@@ -34,23 +34,23 @@ width: 84%;
 position:absolute;
 left: 8%;
 font-size: 1.5rem;
-top: 40%;
+top: 25%;
 }
 
 .cabeca .iconeperfil{
   display: flex;
   position: absolute;
   color:black;
-  width: 4.3rem;
+  width: 3rem;
   left: 90%;
-  top: 47%;
+  top: 33%;
   
 }
 
 .cabeca .hamburguer{
-  width: 4.3rem;
+  width: 3rem;
   position: absolute;
-  top: 48%;
+  top: 32%;
   left: 2%;
 }
 
