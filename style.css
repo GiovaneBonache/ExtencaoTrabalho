@@ -1,0 +1,56 @@
+:root{
+    --cor-primaria : #D73737;
+    --cor-secundaria: blue;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}
+  @media (max-width: 400px) {
+    .topo {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+.cabeca{
+    background-color:var(--cor-primaria);
+    position:absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 18%;
+
+}
+.cabeca .titulo{
+color: white;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 50%;
+width: 84%;
+position:absolute;
+left: 8%;
+font-size: 1.5rem;
+top: 40%;
+}
+
+.cabeca .iconeperfil{
+  display: flex;
+  position: absolute;
+  color:black;
+  width: 4.3rem;
+  left: 90%;
+  top: 47%;
+  
+}
+
+.cabeca .hamburguer{
+  width: 4.3rem;
+  position: absolute;
+  top: 48%;
+  left: 2%;
+}
+
