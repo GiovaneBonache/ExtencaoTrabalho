@@ -148,7 +148,7 @@ top: 25%;
   
 }
 
-.tarefa1 button{
+button{
   background-color: var(--cor-primaria);
   top: 90%;
   position: absolute;
@@ -156,12 +156,16 @@ top: 25%;
   height: 4rem;
   width: 12rem;
   color: white;
-  font-size: 35px;
   font-family:var(--fonte);
   font-weight: bold;
   box-shadow:  3px 3px 5px rgba(0,0,0,0.5);;
+  border-style:none;
+  cursor: pointer;
 }
 
+.tarefa1 button{
+font-size: 35px;
+}
 .botao1{
 left: 7%;
 
