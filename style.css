@@ -3,17 +3,24 @@
     --cor-secundaria: blue;
 }
 
-@media (max-width: 768px) {
-  body {
-    font-size: 14px;
+@media (min-width: 501px) {
+  body p{
+    font-size: 28px;
   }
-}
-  @media (max-width: 400px) {
-    .topo {
-      flex-direction: column;
-      align-items: flex-start;
-    }
+  body .txtprincipal{
+    font-size: 35px;
   }
+  
+  }
+  @media (max-width: 500px) {
+  body p{
+    font-size: 24px;
+  }
+  body .txtprincipal{
+    font-size: 30px;
+  }
+  }
+  
 
 .cabeca{
     background-color:var(--cor-primaria);
@@ -81,25 +88,55 @@ top: 25%;
 }
 .placa{
   position: absolute;
-  width: 10rem;
-  top: 8rem;
+  width: 9rem;
+  top: 7rem;
   left: 4rem;
  filter: drop-shadow(4px 6px 6px rgba(0, 0, 0, 0.5));
 
 }
 .txtprincipal{
   color: var(--cor-primaria);
-  top: 8rem;
+  top: 7rem;
   position: absolute;
-  left: 16rem;
-  font-size: 40px;
+  left: 13.7rem;
   font-style:oblique;
-
+  right: 3rem;
 }
 .tarefa1 p{
   position: absolute;
-  font-size: 30px;
-  top: 17.5rem;
+  top: 15.5rem;
   left: 4.3rem;
+  right: 3rem;
+}
+.imagemfoda{
+  background-color: white;
+  width: 50%;
+  position: absolute;
+  height: 20%;
+ padding: 8%;
+ top: 29.3rem;
+ left: 18%;
+ border-radius: 10%;
+ 
+}
+
+.imagemfoda p {
+  margin: 0;
+  position: absolute;
+  top: 93%;
+  font-size: 0.9rem;
+  
   right: 2rem;
+  text-align: center;
+  display: flex;
+  align-items: center;  
+}
+.imagemfoda .fone{
+  position: absolute;
+  height: 85%;
+  border-radius: 1rem;
+  top: 6%;
+  left: 6%;
+  width: auto;
+  
 }
