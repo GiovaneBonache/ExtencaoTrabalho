@@ -1,31 +1,46 @@
 :root{
     --cor-primaria : #D73737;
-    --cor-secundaria: blue;
+    --cor-secundaria: #F2F2F2;
     --fonte: 'Roboto', sans-serif;
 }
 
-@media (min-width: 501px) {
+
+  
+  @media (max-width: 1000px) {
   body p{
-    font-size: 28px;
+    font-size: 1.3rem;
     font-family:var(--fonte);
   }
   body .txtprincipal{
+    font-size: 23px;
+    font-family:var(--fonte);
+  }
+  .imagemfoda p{
+    font-size: 0.9rem;
+  }
+  .tarefa1 button{
     font-size: 35px;
-    font-family:var(--fonte);
-  }
-  
-  }
-  @media (max-width: 500px) {
-  body p{
-    font-size: 24px;
-    font-family:var(--fonte);
-  }
-  body .txtprincipal{
-    font-size: 30px;
-    font-family:var(--fonte);
   }
   }
   
+  @media (max-width: 400px){
+    body p{
+    font-size: 20px;
+    font-family:var(--fonte);
+  }
+    body .txtprincipal{
+    font-size: 1.4rem;
+    font-family:var(--fonte);
+    margin: 2px;
+  }
+  .imagemfoda p{
+    font-size: 0.7rem;
+  }
+  .tarefa1 button{
+    font-size: 25px;
+  }
+  
+  }
 
 .cabeca{
   font-family:var(--fonte);
@@ -35,8 +50,8 @@
     top: 0;
     left: 0;
     height: 15%;
-
 }
+
 .cabeca .titulo{
 color: white;
 display: flex;
@@ -57,7 +72,6 @@ top: 25%;
   width: 3rem;
   left: 85%;
   top: 33%;
-  
 }
 
 .cabeca .hamburguer{
@@ -72,7 +86,6 @@ top: 25%;
   position: absolute;
   top: 32%;
   left: 5%;
-  
 }
 
 .semcor{
@@ -81,8 +94,8 @@ top: 25%;
     top: 0;
     left: 0;
     height: 15%;
-
 }
+
 .semcor .iconeperfil{
   display: flex;
   position: absolute;
@@ -92,37 +105,41 @@ top: 25%;
   top: 33%;
   
 }
+
 .placa{
-  
   position: absolute;
   width: 9rem;
   top: 7rem;
-  left: 4rem;
- filter: drop-shadow(4px 6px 6px rgba(0, 0, 0, 0.5));
+  left: 3rem;
+  filter: drop-shadow(4px 6px 6px rgba(0, 0, 0, 0.5));
 
 }
+
 .txtprincipal{
+  
   color: var(--cor-primaria);
   top: 7rem;
   position: absolute;
-  left: 13.7rem;
+  left: 12.7rem;
   font-style:oblique;
-  right: 3rem;
 }
+
 .tarefa1 p{
   position: absolute;
   top: 15.5rem;
-  left: 4.3rem;
-  right: 3rem;
+  left: 3.3rem;
+  right: 1rem;
+
 }
+
 .imagemfoda{
   background-color: white;
-  width: 50%;
+  width: 77%;
   position: absolute;
-  height: 20%;
- padding: 8%;
+  height: 23%;
+ padding: 6%;
  top: 29.3rem;
- left: 18%;
+ left: 10%;
  border-radius: 10%;
  
 }
@@ -130,31 +147,31 @@ top: 25%;
 .imagemfoda p {
   margin: 0;
   position: absolute;
-  top: 93%;
-  font-size: 0.9rem;
-  
-  right: 2rem;
+  top: 88%;
   text-align: center;
   display: flex;
   align-items: center;  
+  right: 0rem;
+  left: 2rem;
+  
 }
+
 .imagemfoda .fone{
   position: absolute;
-  height: 85%;
+  height: 80%;
   border-radius: 1rem;
   top: 6%;
   left: 6%;
-  width: auto;
-  
+  width: 90%;
 }
 
 button{
   background-color: var(--cor-primaria);
-  top: 90%;
+  top: 95%;
   position: absolute;
   border-radius: 2rem;
-  height: 4rem;
-  width: 12rem;
+  height: 3rem;
+  width: 9rem;
   color: white;
   font-family:var(--fonte);
   font-weight: bold;
@@ -163,14 +180,13 @@ button{
   cursor: pointer;
 }
 
-.tarefa1 button{
-font-size: 35px;
-}
+
+
 .botao1{
-left: 7%;
+left: 3%;
 
 }
 
 .botao2{
-  left: 65%;
+  left: 58%;
 }
