@@ -125,16 +125,18 @@ top: 25%;
 }
 
 .txtprincipal{
-  
+  font-weight: bold;
   color: var(--cor-primaria);
   position: absolute;
   font-style:oblique;
+  max-width: 250px;
+  right: 1rem;
 }
 
 .tarefa1 p{
   position: absolute;
   top: 14rem;
-  left: 1.4rem;
+  left: 2rem;
   right: 1rem;
 }
 
