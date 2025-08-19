@@ -72,22 +72,22 @@ width: 84%;
 position:absolute;
 left: 8%;
 font-size: 1.2rem;
-top: 25%;
+top: 40%;
 }
 
 .cabeca .iconeperfil{
   display: flex;
   position: absolute;
   color:black;
-  width: 3rem;
+  width: 2.5rem;
   left: 85%;
-  top: 33%;
+  top: 45%;
 }
 
 .cabeca .hamburguer{
-  width: 3rem;
+  width: 2.5rem;
   position: absolute;
-  top: 32%;
+  top: 45%;
   left: 5%;
 }
 
@@ -190,4 +190,8 @@ left: 3%;
 
 .botao2{
   left: 58%;
+}
+
+#carouselExampleIndicators{
+  top: 110px;
 }
