@@ -1,6 +1,6 @@
 :root{
-    --cor-primaria : #D73737;
-    --cor-secundaria: #F2F2F2;
+    --cor-primaria : #e61616;
+    --cor-secundaria: #a80303;
     --fonte: 'Roboto', sans-serif;
 }
 
@@ -26,6 +26,12 @@
   .placa{
      width:8rem;
   }
+  #aula{
+  font-size: 40px;
+  }
+  #prova{
+  font-size: 40px;
+  }
   }
   
   @media (max-width: 390px){
@@ -49,6 +55,12 @@
   }
   .placa{
      width: 7rem;
+  }
+  #aula{
+  font-size: 40px;
+  }
+  #prova{
+  font-size: 40px;
   }
   }
 
@@ -169,7 +181,7 @@ top: 40%;
   width: 100%;
 }
 
-button{
+.tarefa1 button{
   background-color: var(--cor-primaria);
   top: 90%;
   position: absolute;
@@ -193,5 +205,88 @@ left: 3%;
 }
 
 #carouselExampleIndicators{
-  top: 110px;
+  position: absolute;
+  top: 14%;
+  width: 100%;
+}
+.carousel-inner{
+max-height: 250px;
+min-height: 249px;
+}
+
+.index button{
+  background-color: var(--cor-primaria);
+  position: absolute;
+  border-radius: 1rem;
+  color: white;
+  font-family:var(--fonte);
+  font-weight: bold;
+  box-shadow:  3px 3px 5px rgba(0,0,0,0.5);
+  border-style:none;
+  cursor: pointer;
+   border: 2px solid var(--cor-secundaria);
+  border-bottom: 5px solid var(--cor-secundaria); 
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+#bsinaliza{
+  top: 49%;
+  left: 1%;
+}
+
+#blegislacao{
+  top: 49%;
+  left: 51%;
+}
+
+.botaoinicial{
+  width: 48%;
+  height: 10%;
+}
+
+#bmecanica{
+  top: 60%;
+  left: 1%;
+}
+
+.botaoinicial2{
+  width: 98%;
+  height: 10%;
+}
+
+#aula{
+  font-weight: bold;
+  position: absolute;
+  top: 43%;
+  left: 2%;
+}
+
+
+/* segunda leva de botoes */
+#bsinaliza2{
+  top: 89%;
+  left: 51%;
+}
+
+#blegislacao2{
+  top: 78%;
+  left: 51%;
+}
+
+#bmecanica2{
+  top: 78%;
+  left: 1%;
+}
+
+.botaoinicial3{
+  width: 48%;
+  height: 21%;
+}
+
+#prova{
+  font-weight: bold;
+  position: absolute;
+  top: 72%;
+  left: 2%;
 }
