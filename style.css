@@ -1,12 +1,33 @@
 :root{
     --cor-primaria : #e61616;
     --cor-secundaria: #a80303;
+    --cor-terciaria: #F2F2F2;
     --fonte: 'Roboto', sans-serif;
+    --poppins: 'Poppins', sans-serif;
+
 }
 
 
   
   @media (max-width: 1000px) {
+    #retanguloseletor button{
+      font-size: 13px;
+    }
+
+    #retanguloseletor h1{
+      font-size: 15px;
+    }
+
+    #retanguloseletor p{
+      font-size: 8.5px;
+    }
+
+    .index{
+       background-color: var(--cor-terciaria);
+    }
+    .index2{
+       background-color: var(--cor-terciaria);
+    }
   body p{
     font-size: 1.3rem;
     font-family:var(--fonte);
@@ -35,6 +56,26 @@
   }
   
   @media (max-width: 390px){
+
+    #retanguloseletor button{
+      font-size: 11px;
+    }
+
+    #retanguloseletor h1{
+      font-size: 13px;
+    }
+
+    #retanguloseletor p{
+      font-size: 7.5px;
+    }
+
+    .index{
+      background-color: var(--cor-terciaria);
+    }
+
+    .index2{
+       background-color: var(--cor-terciaria);
+    }
     body p{
     font-size: 20px;
     font-family:var(--fonte);
@@ -68,10 +109,9 @@
   font-family:var(--fonte);
     background-color:var(--cor-primaria);
     position:absolute;
+    height: 5rem;
     width: 100%;
-    top: 0;
-    left: 0;
-    min-height: 7rem;
+  
 
 }
 
@@ -85,7 +125,7 @@ width: 84%;
 position:absolute;
 left: 8%;
 font-size: 1.2rem;
-top: 40%;
+top: 30%;
 }
 
 .cabeca .iconeperfil{
@@ -94,13 +134,13 @@ top: 40%;
   color:black;
   width: 2.5rem;
   left: 85%;
-  top: 45%;
+  top: 30%;
 }
 
 .cabeca .hamburguer{
   width: 2.5rem;
   position: absolute;
-  top: 45%;
+  top: 30%;
   left: 5%;
 }
 
@@ -208,9 +248,25 @@ left: 3%;
 
 #carouselExampleIndicators{
   position: absolute;
-  top: 13%;
+  top: 10%;
   width: 100%;
 }
+.carousel{
+height: 260px;
+}
+
+.carousel-indicators li {
+  width: 15px !important;       
+  height: 15px !important;      
+  border-radius: 50% !important;
+  background-color: gray;
+  border: 1.5px solid black !important;
+}
+
+.carousel-indicators li.active {
+  background-color: yellow;
+}
+
 .carousel-inner{
 max-height: 250px;
 min-height: 249px;
@@ -291,4 +347,107 @@ min-height: 249px;
   position: absolute;
   top: 72%;
   left: 2%;
+}
+
+#retanguloseletor{
+  font-family: var(--poppins);
+  background-color: white;
+  position: absolute;
+  width: 40%;
+  height: 33%;
+  border-radius:6px ;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),   
+              0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+#retanguloseletor h1{
+  position: relative;
+  font-family: var(--poppins);
+  top: 50%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  font-family: var(--poppins);
+  font-weight: 700;
+}
+
+#retanguloseletor p{
+  position: relative;
+  font-family: var(--poppins);
+  top: 46%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding: 3px;
+}
+
+#retanguloseletor.mecanica {
+  top: 45%;
+  left: 6%;
+}
+
+#retanguloseletor.legislacao {
+  top: 45%;
+  left: 54%;
+}
+
+#retanguloseletor.sinalizacao{
+  top: 81%;
+  left: 6%;
+}
+
+#retanguloseletor.breve {
+  top: 81%;
+  left: 54%;
+}
+
+#retanguloseletor button{
+background-color: var(--cor-primaria);
+position: absolute;
+top: 85%;
+height:9%;
+width: 32%;
+border-radius: 8px ;
+border-style:none;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),   
+              0 6px 20px rgba(0, 0, 0, 0.08);
+              color: white;
+
+}
+.prova{
+left: 58%;
+text-align: center;
+}
+
+.tarefa{
+left: 10%;
+text-align: center;
+}
+
+#retanguloseletor img{
+  position: absolute;
+  width: 100%;
+  border-radius: 6px 6px 0px 0px;
+  top: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),   
+              0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+#plus{
+  position: relative;
+  top: 30px;
+  display: flex;
+   justify-content: center;
+    font-size: 3.5rem;
+    height: 0px;
+}
+
+#titulo2{
+  position: absolute;
+  top: 40%;
+  left:5%;
+  font-size: 28px;
+  font-family: var(--poppins);
+  font-weight: 700;
+
 }
