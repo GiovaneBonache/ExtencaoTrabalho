@@ -1,5 +1,5 @@
 :root{
-    --cor-primaria : #e61616;
+    --cor-primaria : #C20707;
     --cor-secundaria: #a80303;
     --cor-terciaria: #F2F2F2;
     --fonte: 'Roboto', sans-serif;
@@ -128,7 +128,7 @@ body{
   font-family:var(--fonte);
     background-color:var(--cor-primaria);
     position:absolute;
-    height: 4rem;
+    height: 4.2rem;
     width: 100%;
   
 
@@ -143,23 +143,23 @@ height: 50%;
 width: 84%;
 position:absolute;
 left: 8%;
-font-size: 1rem;
-top: 28%;
+font-size: 1rem !important;
+top: 30%;
 }
 
 .cabeca .iconeperfil{
   display: flex;
   position: absolute;
   color:black;
-  width: 2.5rem;
+  width: 2.3rem;
   left: 85%;
-  top:20%;
+  top:22%;
 }
 
 .cabeca .hamburguer{
-  width: 2.5rem;
+  width: 2.3rem;
   position: absolute;
-  top: 20%;
+  top: 22%;
   left: 5%;
 }
 
