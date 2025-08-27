@@ -7,9 +7,20 @@
 
 }
 
-
+body{
+  height: 100%;
+  
+}
   
   @media (max-width: 1000px) {
+
+   #retanguloseletor p{
+    top: 48%;
+    }
+
+    #retanguloseletor h1{
+    top: 52%;
+}
     #retanguloseletor button{
       font-size: 13px;
     }
@@ -19,7 +30,7 @@
     }
 
     #retanguloseletor p{
-      font-size: 8.5px;
+      font-size: 7.4px;
     }
 
     .index{
@@ -56,6 +67,14 @@
   }
   
   @media (max-width: 390px){
+    #retanguloseletor p{
+  top: 47%;
+  }
+
+    
+    #retanguloseletor h1{
+  top: 51%;
+  }
 
     #retanguloseletor button{
       font-size: 11px;
@@ -66,7 +85,7 @@
     }
 
     #retanguloseletor p{
-      font-size: 7.5px;
+      font-size: 7px;
     }
 
     .index{
@@ -109,7 +128,7 @@
   font-family:var(--fonte);
     background-color:var(--cor-primaria);
     position:absolute;
-    height: 5rem;
+    height: 4rem;
     width: 100%;
   
 
@@ -124,8 +143,8 @@ height: 50%;
 width: 84%;
 position:absolute;
 left: 8%;
-font-size: 1.2rem;
-top: 30%;
+font-size: 1rem;
+top: 28%;
 }
 
 .cabeca .iconeperfil{
@@ -134,13 +153,13 @@ top: 30%;
   color:black;
   width: 2.5rem;
   left: 85%;
-  top: 30%;
+  top:20%;
 }
 
 .cabeca .hamburguer{
   width: 2.5rem;
   position: absolute;
-  top: 30%;
+  top: 20%;
   left: 5%;
 }
 
@@ -248,11 +267,11 @@ left: 3%;
 
 #carouselExampleIndicators{
   position: absolute;
-  top: 10%;
+  top: 8.8%;
   width: 100%;
 }
 .carousel{
-height: 260px;
+height: 210px;
 }
 
 .carousel-indicators li {
@@ -268,8 +287,8 @@ height: 260px;
 }
 
 .carousel-inner{
-max-height: 250px;
-min-height: 249px;
+max-height: 200px;
+
 }
 
 .index button{
@@ -354,16 +373,18 @@ min-height: 249px;
   background-color: white;
   position: absolute;
   width: 40%;
-  height: 33%;
+  height: 28%;
   border-radius:6px ;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),   
               0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
+
+
+
 #retanguloseletor h1{
   position: relative;
   font-family: var(--poppins);
-  top: 50%;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -371,10 +392,12 @@ min-height: 249px;
   font-weight: 700;
 }
 
+
+
+
 #retanguloseletor p{
   position: relative;
   font-family: var(--poppins);
-  top: 46%;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -382,22 +405,22 @@ min-height: 249px;
 }
 
 #retanguloseletor.mecanica {
-  top: 45%;
+  top: 40%;
   left: 6%;
 }
 
 #retanguloseletor.legislacao {
-  top: 45%;
+  top: 40%;
   left: 54%;
 }
 
 #retanguloseletor.sinalizacao{
-  top: 81%;
+  top: 70%;
   left: 6%;
 }
 
 #retanguloseletor.breve {
-  top: 81%;
+  top: 70%;
   left: 54%;
 }
 
@@ -406,14 +429,13 @@ background-color: var(--cor-primaria);
 position: absolute;
 top: 85%;
 height:9%;
-width: 32%;
+width: 33%;
 border-radius: 8px ;
 border-style:none;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),   
-              0 6px 20px rgba(0, 0, 0, 0.08);
-              color: white;
-
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.08);
+color: white;
 }
+
 .prova{
 left: 58%;
 text-align: center;
@@ -444,10 +466,9 @@ text-align: center;
 
 #titulo2{
   position: absolute;
-  top: 40%;
-  left:5%;
-  font-size: 28px;
+  top: 36.5%;
+  left:6%;
+  font-size: 23px;
   font-family: var(--poppins);
   font-weight: 700;
-
 }
