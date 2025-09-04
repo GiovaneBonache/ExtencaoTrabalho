@@ -13,7 +13,13 @@ body{
 }
   
   @media (max-width: 1000px) {
+    .texto_questao p{
+      font-size: 20px;
+    }
 
+    .texto_questao H1{
+      font-size: 25px;
+    }
    #retanguloseletor p{
     top: 48%;
     }
@@ -67,6 +73,15 @@ body{
   }
   
   @media (max-width: 390px){
+    .texto_questao p{
+      font-size: 18px;
+    }
+
+    .texto_questao H1{
+      font-size: 23px;
+    }
+
+
     #retanguloseletor p{
   top: 47%;
   }
@@ -183,7 +198,7 @@ top: 30%;
   position: absolute;
   color:black;
   width: 3rem;
-  left: 85%;
+  left: 82%;
   top: 33%;
   
 }
@@ -474,29 +489,54 @@ text-align: center;
 }
 
 #tarefas button{
+  outline: none;
    position: absolute;
   height: 55px;
   width: 95%;
   left: 2%;
-  border-radius: 16px;
+  padding: 10px 20px;
+  border: 3px solid #000;
+  border-radius: 12px;
+  
 }
 
 #opcaoverde{
+  outline: none;
 top: 32rem;
 background-color: green;
 }
 
 #opcaovermelho{
+  outline: none;
 top: 40rem;
 background-color: var(--cor-primaria);
 }
 
 #opcaodefaut1{
+  outline: none;
 top: 32rem;
 background-color: var(--cor-terciaria);
 }
+.opcao.ativo {
+  background-color: inherit; 
+}
+.opcao.correto {
+  background-color: #4CAF50 !important; 
+  color: white;
+}
+
+.opcao.errado {
+  background-color: #ff1100 !important;
+  color: white;
+}
+
+.opcao.correto img {
+  background-color: #4CAF50 !important; 
+  color: white;
+}
 
 #opcaodefaut2{
+  outline: none;
 top: 36rem;
 background-color: var(--cor-terciaria);
 }
@@ -509,6 +549,7 @@ background-color: var(--cor-terciaria);
 }
 
 #opcaodefaut2 img{
+
    position: absolute;
   left: 3%;
   width: 40px;
@@ -520,21 +561,6 @@ background-color: var(--cor-terciaria);
   font-size: 30px;
   left: 16%;
   top: 15%;
-}
-
-#botoesgeral{
-  background-color: var(--cor-primaria);
-  top: 41rem;
-  position: absolute;
-  border-radius: 2rem;
-  height: 3rem;
-  width: 9rem;
-  color: white;
-  font-family:var(--fonte);
-  font-weight: bold;
-  box-shadow:  3px 3px 5px rgba(0,0,0,0.5);;
-  border-style:none;
-  cursor: pointer;
 }
 
 #botao3{
@@ -568,4 +594,51 @@ background-color: var(--cor-primaria);
   border-style:none;
   cursor: pointer;
   
+}
+
+#questaotexto img{
+  position: absolute;
+  top: 10rem;
+  width: 50%;
+  height: 10rem;
+}
+
+#tarefas{
+  background-color:var(--cor-terciaria);
+}
+
+.texto_questao h1{
+  position: absolute;
+  top: 100%;
+  
+  left: 5%;
+  margin: 5px;
+}
+
+.texto_questao p{
+  position: absolute;
+  top: 200%;
+  
+  left: 5%;
+  margin: 5px;
+  font-family: var(--poppins);
+}
+
+#enviar {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s;
+}
+
+#enviar.correto {
+  background: green;
+  color: white;
+}
+
+#enviar.errado {
+  background: red;
+  color: white;
 }

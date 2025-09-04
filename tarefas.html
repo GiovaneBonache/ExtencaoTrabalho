@@ -12,45 +12,106 @@
     <title>Document</title>
 </head>
 <body id="tarefas">
-    <header class="cabeca">
+<header class="semcor">
     <div class="container">
-    <div> <a href="tarefa1.html"><img class="hamburguer" src="img/main-menu.png"></a> </div> 
-        <div class="titulo"><h1> Explore</h1></div> 
-        <div><a href="tarefa1.html"><img class="iconeperfil" src="img/person-circle.png.svg"> </a></div>
+    <div> <a href="index2.html"><img class="seta" src="img/chevron-left.svg"></a> </div> 
+        <div><a href="index2.html"><img class="iconeperfil" src="img/person-circle.png.svg"> </a></div>
     </div>
-    <button id="opcaodefaut1" class="opcao">
-  <img src="img/square.svg" alt="quadrado">
+  <div class="texto_questao">
+    <h1> No que se refere <span style="color: red;">à direção ofensiva e à direção defensiva</span>, julgue o item subsequente.  </h1>
+      <p>A direção defensiva eficaz demanda a utilização correta dos equipamentos do automóvel, devendo o encosto de cabeça ser regulado na altura das orelhas do condutor, e não da nuca, a fim de preveni-lo do denominado efeito chicote.</p>
+  </div>
+
+    
+    <button id="opcaodefaut1" class="opcao"  data-resposta="correta">
+  <img class="iconequadrado" src="img/square.svg" alt="quadrado">
   <h1>Verdadeiro</h1>
 </button>
-
-<button id="opcaodefaut2" class="opcao">
-  <img src="img/square.svg" alt="quadrado">
+ 
+<button id="opcaodefaut2" class="opcao" data-resposta="errada">
+  <img  class="iconequadrado" src="img/square.svg" alt="quadrado">
   <h1>Falso</h1>
+
+  
 </button>
-    </header>
 
 
     <button id="botao3"> Retornar</button>
     <button id="botao4"> Prosseguir</button>
 </html>
 
-
 <script>
 const botoes = document.querySelectorAll(".opcao");
+const enviar = document.getElementById("botao4");
+const retornar = document.getElementById("botao3");
+
+let selecionado = null;
+let respostaConfirmada = false;
 
 botoes.forEach(botao => {
   botao.addEventListener("click", () => {
-    // Desativa todos os botões
+    // Resetar todos os botões
     botoes.forEach(b => {
-      b.classList.remove("ativo");
-      b.querySelector("img").src = "img/square.svg"; // volta para quadrado
-      b.querySelector("img").alt = "quadrado";
+      b.classList.remove("ativo", "correto", "errado");
+      const img = b.querySelector("img");
+      setTimeout(() => {
+        img.src = "img/square.svg"; 
+        img.alt = "quadrado";
+      }, 200);
     });
 
-    // Ativa apenas o clicado
+    // Ativar botão selecionado
     botao.classList.add("ativo");
-    botao.querySelector("img").src = "img/check-square.svg"; // muda para check
-    botao.querySelector("img").alt = "check";
+    const img = botao.querySelector("img");
+    setTimeout(() => {
+      img.src = "img/check-square.svg"; 
+      img.alt = "check";
+    }, 200);
+
+    selecionado = botao.dataset.resposta;
   });
+});
+
+enviar.addEventListener("click", () => {
+  if (respostaConfirmada) {
+    // Já confirmou → então redireciona
+    window.location.href = "index2.html"; 
+    return;
+  }
+
+  if (!selecionado) {
+    enviar.textContent = "Selecione uma opção!";
+    return;
+  }
+
+  // Mostrar resultado
+  if (selecionado === "correta") {
+    enviar.textContent = "Correto ✔";
+  } else {
+    enviar.textContent = "Errado ✘";
+  }
+
+  // Alterar cor do botão selecionado
+  botoes.forEach(botao => {
+    if (botao.classList.contains("ativo")) {
+      if (selecionado === "correta") {
+        botao.classList.add("correto"); 
+      } else {
+        botao.classList.add("errado");   
+      }
+    }
+  });
+
+  // Depois de 2 segundos → muda texto e ativa função de próxima página
+  setTimeout(() => {
+    enviar.textContent = "Prosseguir";
+    respostaConfirmada = true;
+
+    // também muda o "Retornar" para redirecionar
+  
+    retornar.onclick = () => {
+      window.location.href = "index2.html"; 
+    };
+  }, 2000);
 });
 </script>
