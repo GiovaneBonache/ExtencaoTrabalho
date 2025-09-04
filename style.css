@@ -472,3 +472,100 @@ text-align: center;
   font-family: var(--poppins);
   font-weight: 700;
 }
+
+#tarefas button{
+   position: absolute;
+  height: 55px;
+  width: 95%;
+  left: 2%;
+  border-radius: 16px;
+}
+
+#opcaoverde{
+top: 32rem;
+background-color: green;
+}
+
+#opcaovermelho{
+top: 40rem;
+background-color: var(--cor-primaria);
+}
+
+#opcaodefaut1{
+top: 32rem;
+background-color: var(--cor-terciaria);
+}
+
+#opcaodefaut2{
+top: 36rem;
+background-color: var(--cor-terciaria);
+}
+
+#opcaodefaut1 img{
+  position: absolute;
+  left: 3%;
+  width: 40px;
+  top: 10%;
+}
+
+#opcaodefaut2 img{
+   position: absolute;
+  left: 3%;
+  width: 40px;
+  top: 10%;
+}
+
+#tarefas button h1{
+  position: absolute;
+  font-size: 30px;
+  left: 16%;
+  top: 15%;
+}
+
+#botoesgeral{
+  background-color: var(--cor-primaria);
+  top: 41rem;
+  position: absolute;
+  border-radius: 2rem;
+  height: 3rem;
+  width: 9rem;
+  color: white;
+  font-family:var(--fonte);
+  font-weight: bold;
+  box-shadow:  3px 3px 5px rgba(0,0,0,0.5);;
+  border-style:none;
+  cursor: pointer;
+}
+
+#botao3{
+left: 3% !important;
+background-color: var(--cor-primaria);
+  top: 41rem;
+  position: absolute;
+  border-radius: 2rem;
+  height: 3rem !important;
+  width: 9rem !important;
+  color: white;
+  font-family:var(--fonte);
+  font-weight: bold;
+  box-shadow:  3px 3px 5px rgba(0,0,0,0.5);;
+  border-style:none;
+  cursor: pointer;
+}
+
+#botao4{
+  left: 58% !important;
+  background-color: var(--cor-primaria);
+  top: 41rem;
+  position: absolute;
+  border-radius: 2rem;
+  height: 3rem !important;
+  width: 9rem !important;
+  color: white;
+  font-family:var(--fonte);
+  font-weight: bold;
+  box-shadow:  3px 3px 5px rgba(0,0,0,0.5);;
+  border-style:none;
+  cursor: pointer;
+  
+}
