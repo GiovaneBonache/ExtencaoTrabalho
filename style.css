@@ -1,5 +1,5 @@
 :root{
-    --cor-primaria : #C20707;
+    --cor-primaria : #D73737;
     --cor-secundaria: #a80303;
     --cor-terciaria: #F2F2F2;
     --fonte: 'Roboto', sans-serif;
@@ -590,7 +590,7 @@ background-color: var(--cor-primaria);
   color: white;
   font-family:var(--fonte);
   font-weight: bold;
-  box-shadow:  3px 3px 5px rgba(0,0,0,0.5);;
+  box-shadow:  3px 3px 5px rgba(0,0,0,0.5);
   border-style:none;
   cursor: pointer;
   
@@ -641,4 +641,99 @@ background-color: var(--cor-primaria);
 #enviar.errado {
   background: red;
   color: white;
+}
+
+.pagina2 .seta{ 
+   width: 2rem;
+  position: absolute;
+  top: 27%;
+  left: 9%;
+}
+
+.pagina2 #txt2{
+  font-size: 30px !important;
+}
+
+#Linhacolorida{
+  top: 0px;
+ width: 10px;
+  height: 100%;
+  border-radius: 16px 0px 0px 16px;
+
+}
+#Linhacolorida.vermelho{
+  position: absolute;
+  background-color: var(--cor-primaria);
+}
+
+#Linhacolorida.azul{
+  position: absolute;
+  background-color: blue;
+}
+
+#Linhacolorida.verde{
+  position: absolute;
+  background-color: green;
+}
+#PainelMaterias{
+  background-color:white ;
+  position: absolute;
+  width: 85%;
+  height: 6rem;
+  left: 5%;
+  border-radius: 12px;
+  box-shadow:  3px 3px 5px rgba(0,0,0,0.5);
+}
+
+#PainelMaterias h1{
+  left: 8%;
+  position: absolute;
+  font-size: 2rem;
+}
+
+#PainelMaterias p{
+  left: 8%;
+  position: absolute;
+  top: 40%;
+  font-size: 1rem;
+
+}
+
+#PainelMaterias .seta{
+  left: 85%;
+  transform: scaleX(-1);
+  top: 25%;
+  width: 50px;
+  
+}
+
+
+#sla{
+  position: absolute;
+  top: 13%;
+  left: 5%;
+  font-size: 1.5rem;
+  font-family: var(--poppins);
+
+}
+.pagina2{
+  background-color: var(--cor-terciaria);
+  
+}
+
+/* Paineis */
+#PainelMaterias.painel1{
+  top: 18%;
+}
+
+#PainelMaterias.painel2{
+  top: 33%;
+}
+
+#PainelMaterias.painel3{
+  top: 48%;
+}
+
+#PainelMaterias.painel4{
+  top: 63%;
 }
