@@ -11,8 +11,69 @@ body{
   height: 100%;
   
 }
+
+@media (min-width: 460px) {
+    /* simular mobile */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #ff0000; 
+  background-image: url(img/imagem\ de\ fundo.jpg);
+   background-size: cover; 
+    background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.mobile-frame {
+  width: 450px;        
+  height: 853px;        
+  background-color: #fff;
+  border-radius: 0px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(img/imagem\ de\ fundo.jpg);
+  background-size: cover;
+  background-position: center;
+  filter: blur(1px) brightness(0.8); 
+  z-index: -1;
+}
+
+
+
+.content {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 450px;
+  min-width: 350px;
+  height: 833px;
+  margin: 0 auto; 
+  overflow-x: hidden;
+}
+}
   
-  @media (max-width: 1000px) {
+  @media (max-width: 10000px) {
     .texto_questao p{
       font-size: 20px;
     }
@@ -282,11 +343,11 @@ left: 3%;
 
 #carouselExampleIndicators{
   position: absolute;
-  top: 8.8%;
+  top: 7.5%;
   width: 100%;
 }
 .carousel{
-height: 210px;
+height: 240px;
 }
 
 .carousel-indicators li {
@@ -302,7 +363,7 @@ height: 210px;
 }
 
 .carousel-inner{
-max-height: 200px;
+max-height: 230px;
 
 }
 
