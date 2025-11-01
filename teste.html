@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Prova - Mecânica Básica DETRAN</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .intro {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .question-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .question {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .options {
+            list-style-type: none;
+        }
+        
+        .option {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .option:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .option.selected {
+            background-color: #e3f2fd;
+            border-color: #2196f3;
+        }
+        
+        .option.correct {
+            background-color: #e8f5e9;
+            border-color: #4caf50;
+        }
+        
+        .option.incorrect {
+            background-color: #ffebee;
+            border-color: #f44336;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.2s;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+        
+        .results {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .score {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #2c3e50;
+        }
+        
+        .pass {
+            color: #27ae60;
+        }
+        
+        .fail {
+            color: #e74c3c;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .progress {
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #7f8c8d;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+     <div class="mobile-frame">
+    <div class="content">
+        <div class="container">
+        <header>
+            <h1>Simulador de Prova - Mecânica Básica</h1>
+            <p>Estilo DETRAN - 30 questões sorteadas de um banco de 50</p>
+        </header>
+        
+        <div class="intro" id="intro">
+            <h2>Instruções</h2>
+            <p>Este simulador apresenta 30 questões de mecânica básica, sorteadas aleatoriamente de um banco de 50 perguntas.</p>
+            <p>Para cada questão, selecione a resposta que você considera correta e clique em "Próxima" para avançar.</p>
+            <p>Ao final da prova, você verá sua pontuação final.</p>
+            <button id="start-btn">Iniciar Prova</button>
+        </div>
+        
+        <div class="question-container hidden" id="question-container">
+            <div class="progress" id="progress">Questão 1 de 30</div>
+            <div class="question" id="question"></div>
+            <ul class="options" id="options"></ul>
+            <div class="navigation">
+                <button id="prev-btn" disabled>Anterior</button>
+                <button id="next-btn">Próxima</button>
+            </div>
+        </div>
+        
+        <div class="results hidden" id="results">
+            <h2>Resultado Final</h2>
+            <div class="score" id="score">Você acertou X de 30</div>
+            <p id="result-message"></p>
+            <button id="restart-btn">Refazer Prova</button>
+        </div>
+        
+        <footer>
+            <p>Simulador de Prova de Mecânica Básica - Desenvolvido para fins educacionais</p>
+        </footer>
+    </div>
+    </div>
+     </div>
+
+    <script>
+        
+        const questionBank = [
+            {
+                question: "Qual a função do sistema de suspensão em um veículo?",
+                options: [
+                    "Absorver impactos e manter estabilidade",
+                    "Aumentar a potência do motor",
+                    "Reduzir o consumo de combustível",
+                    "Melhorar a iluminação do veículo"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que indica o painel do veículo quando a luz do óleo do motor acende?",
+                options: [
+                    "Falta de combustível",
+                    "Problema no sistema elétrico",
+                    "Pressão insuficiente do óleo do motor",
+                    "Temperatura externa baixa"
+                ],
+                correct: 2
+            },
+            {
+                question: "Qual a função do radiador no sistema de arrefecimento?",
+                options: [
+                    "Aquecer o motor",
+                    "Resfriar o líquido de arrefecimento",
+                    "Filtrar o ar do motor",
+                    "Lubrificar as peças móveis"
+                ],
+                correct: 1
+            },
+            {
+                question: "O que é necessário para o funcionamento adequado do motor a combustão?",
+                options: [
+                    "Combustível, ar e ignição",
+                    "Água, óleo e combustível",
+                    "Ar, água e eletricidade",
+                    "Combustível, óleo e água"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual a principal função do catalisador?",
+                options: [
+                    "Aumentar a potência do motor",
+                    "Reduzir a emissão de poluentes",
+                    "Economizar combustível",
+                    "Melhorar o conforto do veículo"
+                ],
+                correct: 1
+            },
+            {
+                question: "O que significa a sigla ABS?",
+                options: [
+                    "Sistema Automático de Buzina e Sinalização",
+                    "Sistema de Alarme de Baixa Segurança",
+                    "Sistema de Freios Antibloqueio",
+                    "Ajuste de Bateria e Sistema"
+                ],
+                correct: 2
+            },
+            {
+                question: "Qual a função da embreagem em um veículo?",
+                options: [
+                    "Controlar a velocidade do veículo",
+                    "Conectar e desconectar o motor da transmissão",
+                    "Aumentar a rotação do motor",
+                    "Distribuir a força para as rodas"
+                ],
+                correct: 1
+            },
+            {
+                question: "O que pode causar o superaquecimento do motor?",
+                options: [
+                    "Pneus com pressão inadequada",
+                    "Falta de líquido de arrefecimento",
+                    "Bateria descarregada",
+                    "Faróis desregulados"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual a função do alternador?",
+                options: [
+                    "Carregar a bateria e alimentar o sistema elétrico",
+                    "Controlar a temperatura do motor",
+                    "Distribuir a ignição para as velas",
+                    "Filtrar o combustível"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que indica o termômetro no painel do veículo?",
+                options: [
+                    "Temperatura externa",
+                    "Temperatura do óleo do motor",
+                    "Temperatura do líquido de arrefecimento",
+                    "Temperatura da cabine"
+                ],
+                correct: 2
+            },
+            {
+                question: "Qual a função do amortecedor?",
+                options: [
+                    "Controlar a direção do veículo",
+                    "Absorver impactos e manter estabilidade",
+                    "Aumentar a potência do motor",
+                    "Reduzir o ruído do escapamento"
+                ],
+                correct: 1
+            },
+            {
+                question: "O que é cambagem?",
+                options: [
+                    "Inclinação vertical das rodas",
+                    "Inclinação horizontal das rodas",
+                    "Alinhamento do volante",
+                    "Pressão dos pneus"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual a função da vela de ignição?",
+                options: [
+                    "Produzir a faísca para queimar a mistura ar-combustível",
+                    "Controlar a temperatura do motor",
+                    "Filtrar o ar do motor",
+                    "Lubrificar as válvulas"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que significa a sigla Câmbio CVT?",
+                options: [
+                    "Controle de Velocidade e Torque",
+                    "Câmbio de Variação Contínua",
+                    "Conversão de Velocidade Térmica",
+                    "Controle de Volante e Transmissão"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual a função do filtro de ar?",
+                options: [
+                    "Impedir a entrada de impurezas no motor",
+                    "Filtrar o combustível",
+                    "Limpar o óleo do motor",
+                    "Filtrar o líquido de arrefecimento"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que é necessário para o funcionamento do sistema de freios?",
+                options: [
+                    "Óleo do motor",
+                    "Líquido de freio",
+                    "Água destilada",
+                    "Combustível"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual a função da correia dentada?",
+                options: [
+                    "Acionar o alternador",
+                    "Sincronizar o virabrequim e comando de válvulas",
+                    "Movimentar os pneus",
+                    "Acionar o sistema de freios"
+                ],
+                correct: 1
+            },
+            {
+                question: "O que pode causar desgaste irregular dos pneus?",
+                options: [
+                    "Alinhamento e balanceamento inadequados",
+                    "Combustível de má qualidade",
+                    "Velas de ignição desgastadas",
+                    "Bateria fraca"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual a função do diferencial?",
+                options: [
+                    "Permitir que as rodas girem em velocidades diferentes",
+                    "Aumentar a potência do motor",
+                    "Reduzir o consumo de combustível",
+                    "Controlar a direção do veículo"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que indica a luz da bateria acesa no painel?",
+                options: [
+                    "Problema no sistema de carga",
+                    "Falta de combustível",
+                    "Temperatura alta do motor",
+                    "Problema nos freios"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual a função do carburador em motores antigos?",
+                options: [
+                    "Misturar ar e combustível",
+                    "Filtrar o óleo do motor",
+                    "Controlar a temperatura",
+                    "Distribuir a ignição"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que é necessário para verificar o nível do óleo do motor?",
+                options: [
+                    "Verificar com o motor frio em superfície plana",
+                    "Verificar com o motor quente em subida",
+                    "Verificar com o motor ligado",
+                    "Verificar com o veículo em movimento"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual a função do sistema de escapamento?",
+                options: [
+                    "Direcionar e reduzir ruídos dos gases de escape",
+                    "Aumentar a potência do motor",
+                    "Reduzir o consumo de combustível",
+                    "Melhorar a estabilidade do veículo"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que significa a sigla TBI?",
+                options: [
+                    "Transmissão com Baixo Impacto",
+                    "Injeção Eletrônica de Combustível",
+                    "Turbina de Baixa Inércia",
+                    "Tração Traseira com Injeção"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual a função da bomba de combustível?",
+                options: [
+                    "Enviar combustível do tanque para o motor",
+                    "Bombear óleo para o motor",
+                    "Circular o líquido de arrefecimento",
+                    "Pressurizar o sistema de freios"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que pode causar trepidação no volante?",
+                options: [
+                    "Pneus desbalanceados",
+                    "Bateria descarregada",
+                    "Faróis desregulados",
+                    "Combustível de má qualidade"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual a função do comando de válvulas?",
+                options: [
+                    "Controlar a abertura e fechamento das válvulas",
+                    "Distribuir a ignição para as velas",
+                    "Controlar a direção do veículo",
+                    "Regular a pressão dos pneus"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que é necessário para o sistema de arrefecimento funcionar adequadamente?",
+                options: [
+                    "Líquido de arrefecimento na proporção correta",
+                    "Óleo do motor com viscosidade adequada",
+                    "Combustível de boa qualidade",
+                    "Pneus com pressão correta"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual a função do sensor de oxigênio?",
+                options: [
+                    "Medir a quantidade de oxigênio nos gases de escape",
+                    "Medir a qualidade do combustível",
+                    "Controlar a temperatura do motor",
+                    "Medir a pressão dos pneus"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que pode causar perda de potência do motor?",
+                options: [
+                    "Filtro de ar sujo",
+                    "Pneus com pressão inadequada",
+                    "Faróis desregulados",
+                    "Bateria fraca"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual a função do sistema de direção hidráulica?",
+                options: [
+                    "Facilitar o giro do volante",
+                    "Aumentar a velocidade do veículo",
+                    "Reduzir o consumo de combustível",
+                    "Melhorar a frenagem"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que indica a luz do freio de estacionamento acesa?",
+                options: [
+                    "Freio de mão acionado ou problema no sistema de freios",
+                    "Problema no sistema elétrico",
+                    "Falta de combustível",
+                    "Temperatura alta do motor"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual a função do virabrequim?",
+                options: [
+                    "Converter movimento linear em rotativo",
+                    "Controlar a abertura das válvulas",
+                    "Distribuir a ignição",
+                    "Bombear combustível"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que é necessário para verificar o líquido de arrefecimento?",
+                options: [
+                    "Verificar com o motor frio",
+                    "Verificar com o motor quente",
+                    "Verificar com o motor ligado",
+                    "Verificar com o veículo em movimento"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual a função do sistema de injeção eletrônica?",
+                options: [
+                    "Controlar a quantidade de combustível injetada",
+                    "Aumentar a potência do motor",
+                    "Reduzir o ruído do motor",
+                    "Melhorar o conforto do veículo"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que pode causar consumo excessivo de combustível?",
+                options: [
+                    "Filtro de ar sujo",
+                    "Pneus com pressão inadequada",
+                    "Velas de ignição desgastadas",
+                    "Todas as alternativas anteriores"
+                ],
+                correct: 3
+            },
+            {
+                question: "Qual a função da bobina de ignição?",
+                options: [
+                    "Transformar a baixa tensão da bateria em alta tensão para as velas",
+                    "Filtrar o combustível",
+                    "Controlar a temperatura do motor",
+                    "Distribuir o óleo para o motor"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que é necessário para o sistema de freios ABS funcionar adequadamente?",
+                options: [
+                    "Sensor de rotação nas rodas funcionando",
+                    "Pneus com boa aderência",
+                    "Líquido de freio em nível adequado",
+                    "Todas as alternativas anteriores"
+                ],
+                correct: 3
+            },
+            {
+                question: "Qual a função do coletor de admissão?",
+                options: [
+                    "Distribuir a mistura ar-combustível para os cilindros",
+                    "Coletar os gases de escape",
+                    "Filtrar o ar do motor",
+                    "Controlar a temperatura do motor"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que pode causar barulho na suspensão?",
+                options: [
+                    "Buchas e coifas desgastadas",
+                    "Pneus com pressão inadequada",
+                    "Combustível de má qualidade",
+                    "Bateria descarregada"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual a função do sistema de partida?",
+                options: [
+                    "Girar o motor para dar partida",
+                    "Controlar a ignição do motor",
+                    "Distribuir combustível para o motor",
+                    "Controlar a temperatura do motor"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que indica o manômetro no painel do veículo?",
+                options: [
+                    "Pressão do óleo do motor",
+                    "Pressão dos pneus",
+                    "Pressão do combustível",
+                    "Pressão do ar na cabine"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual a função do tensor da correia dentada?",
+                options: [
+                    "Manter a correia com a tensão correta",
+                    "Aumentar a potência do motor",
+                    "Reduzir o consumo de combustível",
+                    "Controlar a direção do veículo"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que pode causar superaquecimento do motor em trânsito lento?",
+                options: [
+                    "Ventoinha do radiador com defeito",
+                    "Pneus com pressão inadequada",
+                    "Bateria descarregada",
+                    "Faróis desregulados"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual a função do sistema de lubrificação?",
+                options: [
+                    "Reduzir o atrito entre as peças móveis do motor",
+                    "Aumentar a potência do motor",
+                    "Reduzir o consumo de combustível",
+                    "Melhorar a dirigibilidade do veículo"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que é necessário para verificar o líquido de freio?",
+                options: [
+                    "Verificar no reservatório com o nível entre o mínimo e máximo",
+                    "Verificar com o motor ligado",
+                    "Verificar com o veículo em movimento",
+                    "Verificar com os freios acionados"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual a função do intercooler em motores turbo?",
+                options: [
+                    "Resfriar o ar comprimido pelo turbo",
+                    "Aumentar a pressão do turbo",
+                    "Reduzir o ruído do turbo",
+                    "Lubrificar o turbo"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que pode causar dificuldade na troca de marchas?",
+                options: [
+                    "Problemas no sistema de embreagem",
+                    "Pneus com pressão inadequada",
+                    "Bateria descarregada",
+                    "Faróis desregulados"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual a função do sistema de ventilação do cárter?",
+                options: [
+                    "Remover gases do cárter para reduzir poluição",
+                    "Ventilar a cabine do veículo",
+                    "Resfriar o motor",
+                    "Aquecer o motor em dias frios"
+                ],
+                correct: 0
+            }
+        ];
+
+    
+        const introElement = document.getElementById('intro');
+        const questionContainer = document.getElementById('question-container');
+        const resultsElement = document.getElementById('results');
+        const startButton = document.getElementById('start-btn');
+        const prevButton = document.getElementById('prev-btn');
+        const nextButton = document.getElementById('next-btn');
+        const restartButton = document.getElementById('restart-btn');
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const progressElement = document.getElementById('progress');
+        const scoreElement = document.getElementById('score');
+        const resultMessageElement = document.getElementById('result-message');
+
+        
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let userAnswers = [];
+
+       
+        function getRandomQuestions() {
+            const shuffled = [...questionBank].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, 30);
+        }
+
+        
+        function startQuiz() {
+            currentQuestions = getRandomQuestions();
+            currentQuestionIndex = 0;
+            score = 0;
+            userAnswers = new Array(currentQuestions.length).fill(null);
+            
+            introElement.classList.add('hidden');
+            questionContainer.classList.remove('hidden');
+            resultsElement.classList.add('hidden');
+            
+            showQuestion();
+        }
+
+       
+        function showQuestion() {
+            const question = currentQuestions[currentQuestionIndex];
+            questionElement.textContent = question.question;
+           
+            progressElement.textContent = `Questão ${currentQuestionIndex + 1} de ${currentQuestions.length}`;
+            
+          
+            optionsElement.innerHTML = '';
+            
+          
+            question.options.forEach((option, index) => {
+                const li = document.createElement('li');
+                li.classList.add('option');
+                li.textContent = option;
+                
+                if (userAnswers[currentQuestionIndex] === index) {
+                    li.classList.add('selected');
+                }
+                
+                li.addEventListener('click', () => selectOption(index));
+                optionsElement.appendChild(li);
+            });
+            
+            
+            prevButton.disabled = currentQuestionIndex === 0;
+            nextButton.textContent = currentQuestionIndex === currentQuestions.length - 1 ? 'Finalizar' : 'Próxima';
+        }
+
+       
+        function selectOption(optionIndex) {
+            
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => option.classList.remove('selected'));
+            
+            
+            options[optionIndex].classList.add('selected');
+            
+          
+            userAnswers[currentQuestionIndex] = optionIndex;
+        }
+
+        
+        function nextQuestion() {
+            if (userAnswers[currentQuestionIndex] === null) {
+                alert('Por favor, selecione uma resposta antes de continuar.');
+                return;
+            }
+            
+            if (currentQuestionIndex < currentQuestions.length - 1) {
+                currentQuestionIndex++;
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion();
+            }
+        }
+
+        
+        function showResults() {
+            
+            score = 0;
+            currentQuestions.forEach((question, index) => {
+                if (userAnswers[index] === question.correct) {
+                    score++;
+                }
+            });
+            
+            
+            scoreElement.textContent = `Você acertou ${score} de ${currentQuestions.length}`;
+            
+            if (score >= 21) { 
+                scoreElement.classList.add('pass');
+                scoreElement.classList.remove('fail');
+                resultMessageElement.textContent = 'Parabéns! Você foi aprovado na prova de mecânica básica.';
+            } else {
+                scoreElement.classList.add('fail');
+                scoreElement.classList.remove('pass');
+                resultMessageElement.textContent = 'Você não atingiu a pontuação mínima. Estude mais e tente novamente.';
+            }
+            
+           
+            questionContainer.classList.add('hidden');
+            resultsElement.classList.remove('hidden');
+        }
+
+        startButton.addEventListener('click', startQuiz);
+        nextButton.addEventListener('click', nextQuestion);
+        prevButton.addEventListener('click', prevQuestion);
+        restartButton.addEventListener('click', startQuiz);
+    </script>
+</body>
+</html>

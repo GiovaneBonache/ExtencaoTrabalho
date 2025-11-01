@@ -1,270 +1,335 @@
-:root{
-    --cor-primaria : #D73737;
-    --cor-secundaria: #a80303;
-    --cor-terciaria: #F2F2F2;
-    --fonte: 'Roboto', sans-serif;
-    --poppins: 'Poppins', sans-serif;
+:root {
+  --cor-primaria: #D73737;
+  --cor-secundaria: #a80303;
+  --cor-terciaria: #F2F2F2;
+  --fonte: 'Roboto', sans-serif;
+  --poppins: 'Poppins', sans-serif;
 
-}
-
-body{
-  height: 100%;
-  
-}
-
-@media (min-width: 460px) {
-    /* simular mobile */
-
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background-color: #ff0000; 
-  background-image: url(img/imagem\ de\ fundo.jpg);
-   background-size: cover; 
-    background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-.mobile-frame {
-  width: 450px;        
-  height: 853px;        
-  background-color: #fff;
-  border-radius: 0px;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  position: relative;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url(img/imagem\ de\ fundo.jpg);
-  background-size: cover;
-  background-position: center;
-  filter: blur(1px) brightness(0.8); 
-  z-index: -1;
-}
-
-
-
-.content {
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  max-width: 450px;
-  min-width: 350px;
-  height: 833px;
-  margin: 0 auto; 
-  overflow-x: hidden;
+  height: 100%;
+
 }
-}
-  
-  @media (max-width: 10000px) {
-    .texto_questao p{
-      font-size: 20px;
-    }
 
-    .texto_questao H1{
-      font-size: 25px;
-    }
-   #retanguloseletor p{
-    top: 48%;
-    }
+@media (min-width: 460px) {
+  /* simular mobile */
 
-    #retanguloseletor h1{
-    top: 52%;
-}
-    #retanguloseletor button{
-      font-size: 13px;
-    }
-
-    #retanguloseletor h1{
-      font-size: 15px;
-    }
-
-    #retanguloseletor p{
-      font-size: 7.4px;
-    }
-
-    .index{
-       background-color: var(--cor-terciaria);
-    }
-    .index2{
-       background-color: var(--cor-terciaria);
-    }
-  body p{
-    font-size: 1.3rem;
-    font-family:var(--fonte);
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #ff0000;
+    background-image: url(img/imagem\ de\ fundo.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  body .txtprincipal{
+
+
+  .mobile-frame {
+    width: 450px;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 0px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    position: relative;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(img/imagem\ de\ fundo.jpg);
+    background-size: cover;
+    background-position: center;
+    filter: blur(1px) brightness(0.8);
+    z-index: -1;
+  }
+
+
+
+  .content {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 450px;
+    min-width: 350px;
+    height: 923px;
+    margin: 0 auto;
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 10000px) {
+  #carouselExampleIndicators {
+    position: absolute;
+    top: 7%;
+    width: 100%;
+  }
+
+  .carousel {
+    height: 260px;
+  }
+
+  .carousel-inner {
+    max-height: 250px;
+
+  }
+
+  .questaoprova {
+    font-size: 0.95rem !important;
+    top: 165% !important;
+  }
+
+  .texto_questao p {
+    font-size: 20px;
+  }
+
+  .texto_questao H1 {
+    font-size: 25px;
+  }
+
+  #retanguloseletor p {
+    top: 48%;
+  }
+
+  #retanguloseletor h1 {
+    top: 52%;
+  }
+
+  #retanguloseletor button {
+    font-size: 13px;
+  }
+
+  #retanguloseletor h1 {
+    font-size: 15px;
+  }
+
+  #retanguloseletor p {
+    font-size: 7.4px;
+  }
+
+  .index {
+    background-color: var(--cor-terciaria);
+  }
+
+  .index2 {
+    background-color: var(--cor-terciaria);
+  }
+
+  .textocard {
+    font-size: 0.55rem !important;
+  }
+
+  body p {
+    font-size: 1.3rem;
+    font-family: var(--fonte);
+  }
+
+  body .txtprincipal {
     font-size: 28px;
-    font-family:var(--fonte);
+    font-family: var(--fonte);
     top: 6rem;
     left: 10rem;
   }
-  .imagemfoda p{
+
+  .imagemfoda p {
     font-size: 0.8rem;
   }
-  .tarefa1 button{
+
+  .tarefa1 button {
     font-size: 25px;
   }
-  .placa{
-     width:8rem;
-  }
-  #aula{
-  font-size: 40px;
-  }
-  #prova{
-  font-size: 40px;
-  }
-  }
-  
-  @media (max-width: 390px){
-    .texto_questao p{
-      font-size: 18px;
-    }
 
-    .texto_questao H1{
-      font-size: 23px;
-    }
-
-
-    #retanguloseletor p{
-  top: 47%;
+  .placa {
+    width: 8rem;
   }
 
-    
-    #retanguloseletor h1{
-  top: 51%;
+  #aula {
+    font-size: 40px;
   }
 
-    #retanguloseletor button{
-      font-size: 11px;
-    }
+  #prova {
+    font-size: 40px;
+  }
+}
 
-    #retanguloseletor h1{
-      font-size: 13px;
-    }
+@media (max-width: 390px) {
+  #carouselExampleIndicators {
+    position: absolute;
+    top: 7.5%;
+    width: 100%;
+  }
 
-    #retanguloseletor p{
-      font-size: 7px;
-    }
+  .carousel {
+    height: 240px;
+  }
 
-    .index{
-      background-color: var(--cor-terciaria);
-    }
+  .carousel-inner {
+    max-height: 230px;
 
-    .index2{
-       background-color: var(--cor-terciaria);
-    }
-    body p{
+  }
+
+  .questaoprova {
+    font-size: 0.9rem !important;
+    top: 170% !important;
+  }
+
+  .texto_questao p {
+    font-size: 18px;
+  }
+
+  .texto_questao H1 {
+    font-size: 23px;
+  }
+
+
+  #retanguloseletor p {
+    top: 47%;
+  }
+
+
+  #retanguloseletor h1 {
+    top: 51%;
+  }
+
+  #retanguloseletor button {
+    font-size: 11px;
+  }
+
+  #retanguloseletor h1 {
+    font-size: 13px;
+  }
+
+  #retanguloseletor p {
+    font-size: 7px;
+  }
+
+  .index {
+    background-color: var(--cor-terciaria);
+  }
+
+  .index2 {
+    background-color: var(--cor-terciaria);
+  }
+
+  .textocard {
+    font-size: 0.5rem !important;
+  }
+
+
+  body p {
     font-size: 20px;
-    font-family:var(--fonte);
-    
+    font-family: var(--fonte);
+
   }
-    body .txtprincipal{
+
+  body .txtprincipal {
     font-size: 26px;
-    font-family:var(--fonte);
+    font-family: var(--fonte);
     margin: 2px;
     top: 7rem;
     left: 9rem;
   }
-  .imagemfoda p{
+
+  .imagemfoda p {
     font-size: 0.7rem;
   }
-  .tarefa1 button{
+
+  .tarefa1 button {
     font-size: 25px;
   }
-  .placa{
-     width: 7rem;
-  }
-  #aula{
-  font-size: 40px;
-  }
-  #prova{
-  font-size: 40px;
-  }
+
+  .placa {
+    width: 7rem;
   }
 
-.cabeca{
-  font-family:var(--fonte);
-    background-color:var(--cor-primaria);
-    position:absolute;
-    height: 4.2rem;
-    width: 100%;
-  
+  #aula {
+    font-size: 40px;
+  }
+
+  #prova {
+    font-size: 40px;
+  }
+}
+
+.cabeca {
+  font-family: var(--fonte);
+  background-color: var(--cor-primaria);
+  position: absolute;
+  height: 4.2rem;
+  width: 100%;
+
 
 }
 
-.cabeca .titulo{
-color: white;
-display: flex;
-justify-content: center;
-align-items: center;
-height: 50%;
-width: 84%;
-position:absolute;
-left: 8%;
-font-size: 1rem !important;
-top: 30%;
-}
-
-.cabeca .iconeperfil{
+.cabeca .titulo {
+  color: white;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  width: 84%;
   position: absolute;
-  color:black;
-  width: 2.3rem;
-  left: 85%;
-  top:22%;
+  left: 8%;
+  font-size: 1rem !important;
+  top: 30%;
 }
 
-.cabeca .hamburguer{
-  width: 2.3rem;
-  position: absolute;
-  top: 22%;
-  left: 5%;
-}
 
-.semcor .seta{
+
+.cabeca .hamburguer {
   width: 3rem;
   position: absolute;
-  top: 32%;
-  left: 5%;
+  top: 15%;
+  left: 8%;
+
 }
 
-.semcor{
-    position:absolute;
-    width: 100%;
-    top: 0;
-    left: 0;
-    height: 15%;
+
+
+.semcor {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 15%;
 }
 
-.semcor .iconeperfil{
+.cabeca .iconeperfil {
   display: flex;
   position: absolute;
-  color:black;
+  color: black;
+  width: 2.3rem;
+  left: 85%;
+  top: 22%;
+}
+
+.semcor .iconeperfil {
+  display: flex;
+  position: absolute;
+  color: black;
   width: 3rem;
   left: 82%;
   top: 33%;
-  
+
 }
 
-.placa{
+.placa {
   position: relative;
   top: 6rem;
   left: 1rem;
@@ -272,15 +337,15 @@ top: 30%;
 
 }
 
-.txtprincipal{
+.txtprincipal {
   color: var(--cor-primaria);
   position: absolute;
-  font-style:oblique;
+  font-style: oblique;
   max-width: 250px;
   right: 1rem;
 }
 
-.tarefa1 p{
+.tarefa1 p {
   position: absolute;
   top: 14rem;
   left: 2rem;
@@ -305,12 +370,12 @@ top: 30%;
   top: 93%;
   text-align: center;
   display: flex;
-  align-items: center;  
+  align-items: center;
 }
 
-.imagemfoda .fone{
-    display: block;
-    margin: 0 auto;
+.imagemfoda .fone {
+  display: block;
+  margin: 0 auto;
   height: 100%;
   border-radius: 1rem;
   top: 6%;
@@ -318,7 +383,7 @@ top: 30%;
   width: 100%;
 }
 
-.tarefa1 button{
+.tarefa1 button {
   background-color: var(--cor-primaria);
   top: 90%;
   position: absolute;
@@ -326,33 +391,25 @@ top: 30%;
   height: 3rem;
   width: 9rem;
   color: white;
-  font-family:var(--fonte);
+  font-family: var(--fonte);
   font-weight: bold;
-  box-shadow:  3px 3px 5px rgba(0,0,0,0.5);;
-  border-style:none;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  ;
+  border-style: none;
   cursor: pointer;
 }
 
-.botao1{
-left: 3%;
+.botao1 {
+  left: 3%;
 }
 
-.botao2{
+.botao2 {
   left: 58%;
 }
 
-#carouselExampleIndicators{
-  position: absolute;
-  top: 7.5%;
-  width: 100%;
-}
-.carousel{
-height: 240px;
-}
-
 .carousel-indicators li {
-  width: 15px !important;       
-  height: 15px !important;      
+  width: 15px !important;
+  height: 15px !important;
   border-radius: 50% !important;
   background-color: gray;
   border: 1.5px solid black !important;
@@ -362,53 +419,49 @@ height: 240px;
   background-color: yellow;
 }
 
-.carousel-inner{
-max-height: 230px;
 
-}
-
-.index button{
+.index button {
   background-color: var(--cor-primaria);
   position: absolute;
   border-radius: 1rem;
   color: white;
-  font-family:var(--fonte);
+  font-family: var(--fonte);
   font-weight: bold;
-  box-shadow:  3px 3px 5px rgba(0,0,0,0.5);
-  border-style:none;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  border-style: none;
   cursor: pointer;
-   border: 2px solid var(--cor-secundaria);
-  border-bottom: 5px solid var(--cor-secundaria); 
+  border: 2px solid var(--cor-secundaria);
+  border-bottom: 5px solid var(--cor-secundaria);
   padding: 10px 20px;
   cursor: pointer;
 }
 
-#bsinaliza{
+#bsinaliza {
   top: 49%;
   left: 1%;
 }
 
-#blegislacao{
+#blegislacao {
   top: 49%;
   left: 51%;
 }
 
-.botaoinicial{
+.botaoinicial {
   width: 48%;
   height: 10%;
 }
 
-#bmecanica{
+#bmecanica {
   top: 60%;
   left: 1%;
 }
 
-.botaoinicial2{
+.botaoinicial2 {
   width: 98%;
   height: 10%;
 }
 
-#aula{
+#aula {
   font-weight: bold;
   position: absolute;
   top: 43%;
@@ -417,48 +470,48 @@ max-height: 230px;
 
 
 /* segunda leva de botoes */
-#bsinaliza2{
+#bsinaliza2 {
   top: 89%;
   left: 51%;
 }
 
-#blegislacao2{
+#blegislacao2 {
   top: 78%;
   left: 51%;
 }
 
-#bmecanica2{
+#bmecanica2 {
   top: 78%;
   left: 1%;
 }
 
-.botaoinicial3{
+.botaoinicial3 {
   width: 48%;
   height: 21%;
 }
 
-#prova{
+#prova {
   font-weight: bold;
   position: absolute;
   top: 72%;
   left: 2%;
 }
 
-#retanguloseletor{
+#retanguloseletor {
   font-family: var(--poppins);
   background-color: white;
   position: absolute;
   width: 40%;
   height: 28%;
-  border-radius:6px ;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),   
-              0 6px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
+    0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
 
 
 
-#retanguloseletor h1{
+#retanguloseletor h1 {
   position: relative;
   font-family: var(--poppins);
   text-align: center;
@@ -471,7 +524,7 @@ max-height: 230px;
 
 
 
-#retanguloseletor p{
+#retanguloseletor p {
   position: relative;
   font-family: var(--poppins);
   text-align: center;
@@ -490,7 +543,7 @@ max-height: 230px;
   left: 54%;
 }
 
-#retanguloseletor.sinalizacao{
+#retanguloseletor.sinalizacao {
   top: 70%;
   left: 6%;
 }
@@ -500,89 +553,91 @@ max-height: 230px;
   left: 54%;
 }
 
-#retanguloseletor button{
-background-color: var(--cor-primaria);
-position: absolute;
-top: 85%;
-height:9%;
-width: 33%;
-border-radius: 8px ;
-border-style:none;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.08);
-color: white;
+#retanguloseletor button {
+  background-color: var(--cor-primaria);
+  position: absolute;
+  top: 85%;
+  height: 9%;
+  width: 33%;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.08);
+  color: white;
 }
 
-.prova{
-left: 58%;
-text-align: center;
+.prova {
+  left: 58%;
+  text-align: center;
 }
 
-.tarefa{
-left: 10%;
-text-align: center;
+.tarefa {
+  left: 10%;
+  text-align: center;
 }
 
-#retanguloseletor img{
+#retanguloseletor img {
   position: absolute;
   width: 100%;
   border-radius: 6px 6px 0px 0px;
   top: 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),   
-              0 6px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
+    0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
-#plus{
+#plus {
   position: relative;
   top: 30px;
   display: flex;
-   justify-content: center;
-    font-size: 3.5rem;
-    height: 0px;
+  justify-content: center;
+  font-size: 3.5rem;
+  height: 0px;
 }
 
-#titulo2{
+#titulo2 {
   position: absolute;
   top: 36.5%;
-  left:6%;
+  left: 6%;
   font-size: 23px;
   font-family: var(--poppins);
   font-weight: 700;
 }
 
-#tarefas button{
+#tarefas button {
   outline: none;
-   position: absolute;
+  position: absolute;
   height: 55px;
   width: 95%;
   left: 2%;
   padding: 10px 20px;
   border: 3px solid #000;
   border-radius: 12px;
-  
+
 }
 
-#opcaoverde{
+#opcaoverde {
   outline: none;
-top: 32rem;
-background-color: green;
+  top: 32rem;
+  background-color: green;
 }
 
-#opcaovermelho{
+#opcaovermelho {
   outline: none;
-top: 40rem;
-background-color: var(--cor-primaria);
+  top: 40rem;
+  background-color: var(--cor-primaria);
 }
 
-#opcaodefaut1{
+#opcaodefaut1 {
   outline: none;
-top: 32rem;
-background-color: var(--cor-terciaria);
+  top: 32rem;
+  background-color: var(--cor-terciaria);
 }
+
 .opcao.ativo {
-  background-color: inherit; 
+  background-color: inherit;
 }
+
 .opcao.correto {
-  background-color: #4CAF50 !important; 
+  background-color: #4CAF50 !important;
   color: white;
 }
 
@@ -592,55 +647,56 @@ background-color: var(--cor-terciaria);
 }
 
 .opcao.correto img {
-  background-color: #4CAF50 !important; 
+  background-color: #4CAF50 !important;
   color: white;
 }
 
-#opcaodefaut2{
+#opcaodefaut2 {
   outline: none;
-top: 36rem;
-background-color: var(--cor-terciaria);
+  top: 36rem;
+  background-color: var(--cor-terciaria);
 }
 
-#opcaodefaut1 img{
+#opcaodefaut1 img {
   position: absolute;
   left: 3%;
   width: 40px;
   top: 10%;
 }
 
-#opcaodefaut2 img{
+#opcaodefaut2 img {
 
-   position: absolute;
+  position: absolute;
   left: 3%;
   width: 40px;
   top: 10%;
 }
 
-#tarefas button h1{
+#tarefas button h1 {
   position: absolute;
   font-size: 30px;
   left: 16%;
   top: 15%;
 }
 
-#botao3{
-left: 3% !important;
-background-color: var(--cor-primaria);
+#botao3 {
+  left: 3% !important;
+  background-color: var(--cor-primaria);
   top: 41rem;
   position: absolute;
   border-radius: 2rem;
   height: 3rem !important;
   width: 9rem !important;
   color: white;
-  font-family:var(--fonte);
+  font-family: var(--fonte);
   font-weight: bold;
-  box-shadow:  3px 3px 5px rgba(0,0,0,0.5);;
-  border-style:none;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  ;
+  border-style: none;
   cursor: pointer;
 }
 
-#botao4{
+#botao4 {
   left: 58% !important;
   background-color: var(--cor-primaria);
   top: 41rem;
@@ -649,37 +705,37 @@ background-color: var(--cor-primaria);
   height: 3rem !important;
   width: 9rem !important;
   color: white;
-  font-family:var(--fonte);
+  font-family: var(--fonte);
   font-weight: bold;
-  box-shadow:  3px 3px 5px rgba(0,0,0,0.5);
-  border-style:none;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  border-style: none;
   cursor: pointer;
-  
+
 }
 
-#questaotexto img{
+#questaotexto img {
   position: absolute;
   top: 10rem;
   width: 50%;
   height: 10rem;
 }
 
-#tarefas{
-  background-color:var(--cor-terciaria);
+#tarefas {
+  background-color: var(--cor-terciaria);
 }
 
-.texto_questao h1{
+.texto_questao h1 {
   position: absolute;
   top: 100%;
-  
+
   left: 5%;
   margin: 5px;
 }
 
-.texto_questao p{
+.texto_questao p {
   position: absolute;
   top: 200%;
-  
+
   left: 5%;
   margin: 5px;
   font-family: var(--poppins);
@@ -704,55 +760,83 @@ background-color: var(--cor-primaria);
   color: white;
 }
 
-.pagina2 .seta{ 
-   width: 2rem;
+.semcor .seta {
+  width: 3rem;
+  position: absolute;
+  top: 32%;
+  left: 5%;
+}
+
+.pagina2 .seta {
+  width: 2rem;
   position: absolute;
   top: 27%;
   left: 9%;
 }
 
-.pagina2 #txt2{
+.cabeca .seta {
+  display: flex;
+  position: absolute;
+  color: black;
+  width: 2.3rem;
+  left: 9%;
+  top: 22%;
+}
+
+.semcor .iconeperfil {
+  display: flex;
+  position: absolute;
+  color: black;
+  width: 3rem;
+  left: 82%;
+  top: 33%;
+
+}
+
+.pagina2 #txt2 {
   font-size: 30px !important;
 }
 
-#Linhacolorida{
+#Linhacolorida {
   top: 0px;
- width: 10px;
+  width: 10px;
   height: 100%;
   border-radius: 16px 0px 0px 16px;
 
 }
-#Linhacolorida.vermelho{
+
+#Linhacolorida.vermelho {
   position: absolute;
   background-color: var(--cor-primaria);
 }
 
-#Linhacolorida.azul{
+#Linhacolorida.azul {
   position: absolute;
   background-color: blue;
 }
 
-#Linhacolorida.verde{
+#Linhacolorida.verde {
   position: absolute;
   background-color: green;
 }
-#PainelMaterias{
-  background-color:white ;
+
+#PainelMaterias {
+  background-color: white;
   position: absolute;
   width: 85%;
   height: 6rem;
   left: 5%;
   border-radius: 12px;
-  box-shadow:  3px 3px 5px rgba(0,0,0,0.5);
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
-#PainelMaterias h1{
+#PainelMaterias h1 {
   left: 8%;
   position: absolute;
   font-size: 2rem;
 }
 
-#PainelMaterias p{
+#PainelMaterias p {
   left: 8%;
   position: absolute;
   top: 40%;
@@ -760,16 +844,16 @@ background-color: var(--cor-primaria);
 
 }
 
-#PainelMaterias .seta{
+#PainelMaterias .seta {
   left: 85%;
   transform: scaleX(-1);
   top: 25%;
   width: 50px;
-  
+
 }
 
 
-#sla{
+#sla {
   position: absolute;
   top: 13%;
   left: 5%;
@@ -777,24 +861,92 @@ background-color: var(--cor-primaria);
   font-family: var(--poppins);
 
 }
-.pagina2{
+
+.pagina2 {
   background-color: var(--cor-terciaria);
-  
+
 }
 
 /* Paineis */
-#PainelMaterias.painel1{
+#PainelMaterias.painel1 {
   top: 18%;
 }
 
-#PainelMaterias.painel2{
+#PainelMaterias.painel2 {
   top: 33%;
 }
 
-#PainelMaterias.painel3{
+#PainelMaterias.painel3 {
   top: 48%;
 }
 
-#PainelMaterias.painel4{
+#PainelMaterias.painel4 {
   top: 63%;
 }
+
+/* Fundo esmaecido */
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+/* foto cachorro */
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  position: relative;
+  width: 300px;
+}
+
+
+.fotoCachorro {
+  width: 100%;
+  border-radius: 8px;
+}
+
+
+.fechar {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+
+#btnSair {
+  margin-top: 20px;
+  padding: 13px 40px;
+  border: none;
+  background: var(--cor-primaria);
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#btnCachorro {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.hamburguer {
+  pointer-events: auto;
+  position: relative;
+  z-index: 9999;
+}
+
+.popup {
+  display: none;
+}
+
+/* fim foto cachorro */
