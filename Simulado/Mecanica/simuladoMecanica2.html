@@ -94,7 +94,7 @@
             </header>
             <div class="container">
                 <header id="cabecasimulado">
-                    <h1>Simulador de Prova <br> Mecânica Básica - 1 </br></h1>
+                    <h1>Simulador de Prova <br> Mecânica Básica - 2 </br></h1>
                 </header>
 
                 <div class="intro" id="intro">
@@ -121,7 +121,7 @@
                     <h2>Resultado Final</h2>
                     <div class="score" id="score">Você acertou X de 30</div>
                     <p id="result-message"></p>
-                    <button id="restart-btn">Refazer Prova</button>
+                    <a href="../../MenuSimulado.html"><button id="restart-btn">Voltar</button></a>
                 </div>
             </div>
         </div>
@@ -621,6 +621,7 @@
             }
         ];
 
+
         const introElement = document.getElementById('intro');
         const questionContainer = document.getElementById('question-container');
         const resultsElement = document.getElementById('results');
@@ -757,7 +758,7 @@
         startButton.addEventListener('click', startQuiz);
         nextButton.addEventListener('click', nextQuestion);
         prevButton.addEventListener('click', prevQuestion);
-        restartButton.addEventListener('click', startQuiz);
+
     </script>
 </body>
 

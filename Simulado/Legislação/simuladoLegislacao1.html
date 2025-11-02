@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <link rel="stylesheet" href="../../style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Prova - Legislacão</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .pass {
+            color: green;
+            font-weight: bold;
+        }
+
+        .fail {
+            color: red;
+            font-weight: bold;
+        }
+
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            border: 3px solid #000;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-bottom: 10px;
+            background-color: var(--cor-terciaria);
+        }
+
+        .option img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .option:hover {
+            background-color: #f9f9f9;
+        }
+
+        .option.ativo {
+            background-color: inherit;
+        }
+
+        .option.correto {
+            background-color: #4CAF50 !important;
+            color: white;
+        }
+
+        .option.errado {
+            background-color: #ff1100 !important;
+            color: white;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body class="simuladoCorpo">
+    <div class="mobile-frame">
+        <div class="content">
+            <header class="semcor">
+                <div class="container">
+                    <div> <a href="../../index.html"><img class="seta" src="../../img/chevron-left.svg"></a> </div>
+                </div>
+            </header>
+            <div class="container">
+                <header id="cabecasimulado">
+                    <h1>Simulador de Prova <br> Legislacão </br></h1>
+                </header>
+
+                <div class="intro" id="intro">
+                    <h2>Instruções</h2>
+                    <p>Este simulador apresenta 30 questões de Legislacão, sorteadas aleatoriamente de um banco de
+                        50 perguntas.</p>
+                    <p>Para cada questão, selecione a resposta que você considera correta e clique em "Próxima" para
+                        avançar.</p>
+                    <p>Ao final da prova, você verá sua pontuação final.</p>
+                    <button id="start-btn">Iniciar Prova</button>
+                </div>
+
+                <div class="question-container hidden" id="question-container">
+                    <div class="progress" id="progress">Questão 1 de 30</div>
+                    <div class="question" id="question"></div>
+                    <ul class="options" id="options"></ul>
+                    <div class="navigation">
+                        <button id="prev-btn" disabled>Anterior</button>
+                        <button id="next-btn" class="simuladobnt1">Próxima</button>
+                    </div>
+                </div>
+
+                <div class="results hidden" id="results">
+                    <h2>Resultado Final</h2>
+                    <div class="score" id="score">Você acertou X de 30</div>
+                    <p id="result-message"></p>
+                    <button id="restart-btn">Refazer Prova</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questionBank = [
+            {
+                question: "Qual a lei que estabelece o Código de Trânsito Brasileiro?",
+                options: [
+                    "Lei nº 9.503/1997",
+                    "Lei nº 8.080/1990",
+                    "Lei nº 10.741/2003",
+                    "Lei nº 11.705/2008"
+                ],
+                correct: 0
+            },
+            {
+                question: "Quantos pontos são somados na CNH por uma infração gravíssima?",
+                options: [
+                    "3 pontos",
+                    "5 pontos",
+                    "7 pontos",
+                    "10 pontos"
+                ],
+                correct: 2
+            },
+            {
+                question: "Qual o valor da multa para dirigir usando celular?",
+                options: [
+                    "R$ 130,16",
+                    "R$ 195,23",
+                    "R$ 293,47",
+                    "R$ 880,41"
+                ],
+                correct: 2
+            },
+            {
+                question: "Qual a tolerância de álcool no sangue para condutores?",
+                options: [
+                    "Zero tolerância",
+                    "Até 0,2 mg/L",
+                    "Até 0,5 mg/L",
+                    "Até 0,8 mg/L"
+                ],
+                correct: 0
+            },
+            {
+                question: "Quantos pontos na CNH resultam em suspensão do direito de dirigir?",
+                options: [
+                    "15 pontos",
+                    "20 pontos",
+                    "25 pontos",
+                    "30 pontos"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual a idade mínima para obter a CNH na categoria B?",
+                options: [
+                    "16 anos",
+                    "18 anos",
+                    "21 anos",
+                    "25 anos"
+                ],
+                correct: 1
+            },
+            {
+                question: "O que significa a sigla CRLV?",
+                options: [
+                    "Certificado de Registro e Licenciamento do Veículo",
+                    "Comprovante de Regularidade do Licenciamento Veicular",
+                    "Certificado de Regularização Legal do Veículo",
+                    "Comprovante de Registro e Legalização Veicular"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual a validade da CNH para condutores com até 50 anos?",
+                options: [
+                    "5 anos",
+                    "10 anos",
+                    "15 anos",
+                    "20 anos"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual infração é considerada gravíssima com multa multiplicada por 10?",
+                options: [
+                    "Excesso de velocidade",
+                    "Estacionar em local proibido",
+                    "Dirigir sem CNH",
+                    "Dirigir sob efeito de álcool"
+                ],
+                correct: 3
+            },
+            {
+                question: "Qual a velocidade máxima em vias urbanas não sinalizadas?",
+                options: [
+                    "40 km/h",
+                    "60 km/h",
+                    "80 km/h",
+                    "100 km/h"
+                ],
+                correct: 1
+            },
+            {
+                question: "O que é obrigatório transportar no veículo?",
+                options: [
+                    "Extintor de incêndio",
+                    "Triângulo de segurança",
+                    "Macaco hidráulico",
+                    "Chave de roda"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual o prazo para transferência de propriedade do veículo?",
+                options: [
+                    "15 dias",
+                    "30 dias",
+                    "45 dias",
+                    "60 dias"
+                ],
+                correct: 1
+            },
+            {
+                question: "Quantas categorias de habilitação existem no Brasil?",
+                options: [
+                    "3 categorias",
+                    "5 categorias",
+                    "7 categorias",
+                    "9 categorias"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual infração resulta em apreensão do veículo?",
+                options: [
+                    "Excesso de velocidade",
+                    "Dirigir sem CNH",
+                    "Estacionar em local proibido",
+                    "Dirigir sob efeito de álcool"
+                ],
+                correct: 3
+            },
+            {
+                question: "Qual o período mínimo para curso de reciclagem?",
+                options: [
+                    "15 horas",
+                    "30 horas",
+                    "45 horas",
+                    "60 horas"
+                ],
+                correct: 1
+            },
+            {
+                question: "O que significa a sigla DPVAT?",
+                options: [
+                    "Danos Pessoais por Veículos Automotores de Terra",
+                    "Direito de Proteção Veicular Automotiva Territorial",
+                    "Danos Pessoais Causados por Veículos Automotores de Via Terrestre",
+                    "Documento de Proteção Veicular Automotiva Territorial"
+                ],
+                correct: 2
+            },
+            {
+                question: "Qual a validade do certificado de licenciamento?",
+                options: [
+                    "6 meses",
+                    "1 ano",
+                    "2 anos",
+                    "3 anos"
+                ],
+                correct: 1
+            },
+            {
+                question: "Quantos pontos são somados por infração média?",
+                options: [
+                    "3 pontos",
+                    "4 pontos",
+                    "5 pontos",
+                    "7 pontos"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual a multa por excesso de velocidade até 20%?",
+                options: [
+                    "Infração leve",
+                    "Infração média",
+                    "Infração grave",
+                    "Infração gravíssima"
+                ],
+                correct: 1
+            },
+            {
+                question: "O que é necessário para dirigir veículo de aluguel?",
+                options: [
+                    "CNH categoria B",
+                    "CNH categoria B há mais de 2 anos",
+                    "CNH categoria C",
+                    "CNH categoria D"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual infração não permite indicação de condutor?",
+                options: [
+                    "Excesso de velocidade",
+                    "Estacionamento em local proibido",
+                    "Avançar sinal vermelho",
+                    "Não usar cinto de segurança"
+                ],
+                correct: 3 // mantida, mas revisar conforme lei
+            },
+            {
+                question: "Qual a penalidade para quem dirige sem CNH?",
+                options: [
+                    "Multa apenas",
+                    "Multa e apreensão do veículo",
+                    "Multa e suspensão do direito de dirigir",
+                    "Multa, apreensão do veículo e detenção"
+                ],
+                correct: 1
+            },
+            {
+                question: "Quantos pontos são somados por infração grave?",
+                options: [
+                    "3 pontos",
+                    "4 pontos",
+                    "5 pontos",
+                    "7 pontos"
+                ],
+                correct: 2
+            },
+            {
+                question: "Qual a velocidade máxima em rodovias de pista dupla?",
+                options: [
+                    "80 km/h",
+                    "100 km/h",
+                    "110 km/h",
+                    "120 km/h"
+                ],
+                correct: 2
+            },
+            {
+                question: "O que é proibido transportar no banco dianteiro?",
+                options: [
+                    "Crianças menores de 10 anos",
+                    "Crianças menores de 7 anos",
+                    "Crianças menores de 5 anos",
+                    "Crianças menores de 3 anos"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual o prazo para indicação de condutor?",
+                options: [
+                    "7 dias",
+                    "15 dias",
+                    "30 dias",
+                    "45 dias"
+                ],
+                correct: 1
+            },
+            {
+                question: "Quantos pontos são somados por infração leve?",
+                options: [
+                    "2 pontos",
+                    "3 pontos",
+                    "4 pontos",
+                    "5 pontos"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual infração resulta em cassação da CNH?",
+                options: [
+                    "Reincidência em excesso de velocidade",
+                    "Reincidência em embriaguez ao volante",
+                    "Reincidência em estacionamento irregular",
+                    "Reincidência em uso de celular"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual a validade do exame toxicológico?",
+                options: [
+                    "6 meses",
+                    "1 ano",
+                    "2 anos",
+                    "3 anos"
+                ],
+                correct: 2
+            },
+            {
+                question: "O que é obrigatório para veículos fabricados após 2014?",
+                options: [
+                    "Airbag duplo",
+                    "Freios ABS",
+                    "Controle de estabilidade",
+                    "Câmbio automático"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual a multa por não usar o cinto de segurança?",
+                options: [
+                    "R$ 88,38",
+                    "R$ 130,16",
+                    "R$ 195,23",
+                    "R$ 293,47"
+                ],
+                correct: 2
+            },
+            {
+                question: "Quantos anos de habilitação são necessários para ser instrutor?",
+                options: [
+                    "1 ano",
+                    "2 anos",
+                    "3 anos",
+                    "5 anos"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual infração tem penalidade de advertência por escrito?",
+                options: [
+                    "Velocidade incompatível",
+                    "Estacionamento irregular",
+                    "Não usar cinto de segurança",
+                    "Nenhuma das alternativas"
+                ],
+                correct: 3
+            },
+            {
+                question: "O que significa a sigla SINIAV?",
+                options: [
+                    "Sistema Nacional de Identificação Automática de Veículos",
+                    "Sistema Nacional de Informações Automotivas Veiculares",
+                    "Sistema Nacional de Inspeção Automotiva Veicular",
+                    "Sistema Nacional de Identificação e Averbação Veicular"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual a idade máxima para renovação da CNH sem exames?",
+                options: [
+                    "50 anos",
+                    "60 anos",
+                    "65 anos",
+                    "70 anos"
+                ],
+                correct: 2
+            },
+            {
+                question: "Quantas vezes pode-se fazer o exame de direção?",
+                options: [
+                    "2 vezes",
+                    "3 vezes",
+                    "4 vezes",
+                    "5 vezes"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual infração não gera pontos na CNH?",
+                options: [
+                    "Excesso de velocidade",
+                    "Estacionamento irregular",
+                    "Uso de celular",
+                    "Nenhuma das alternativas"
+                ],
+                correct: 3
+            }
+        ];
+
+
+        const introElement = document.getElementById('intro');
+        const questionContainer = document.getElementById('question-container');
+        const resultsElement = document.getElementById('results');
+        const startButton = document.getElementById('start-btn');
+        const prevButton = document.getElementById('prev-btn');
+        const nextButton = document.getElementById('next-btn');
+        const restartButton = document.getElementById('restart-btn');
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const progressElement = document.getElementById('progress');
+        const scoreElement = document.getElementById('score');
+        const resultMessageElement = document.getElementById('result-message');
+
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let userAnswers = [];
+        let respostaConfirmada = false;
+
+        function getRandomQuestions() {
+            const shuffled = [...questionBank].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, 30);
+        }
+
+        function startQuiz() {
+            currentQuestions = getRandomQuestions();
+            currentQuestionIndex = 0;
+            score = 0;
+            userAnswers = new Array(currentQuestions.length).fill(null);
+
+            introElement.classList.add('hidden');
+            questionContainer.classList.remove('hidden');
+            resultsElement.classList.add('hidden');
+
+            showQuestion();
+        }
+
+        function showQuestion() {
+            respostaConfirmada = false;
+            const question = currentQuestions[currentQuestionIndex];
+            questionElement.textContent = question.question;
+            progressElement.textContent = `Questão ${currentQuestionIndex + 1} de ${currentQuestions.length}`;
+            optionsElement.innerHTML = '';
+
+            question.options.forEach((option, index) => {
+                const li = document.createElement('li');
+                li.classList.add('option');
+                li.innerHTML = `
+          <img src="../../img/square.svg" alt="quadrado">
+          <span>${option}</span>
+        `;
+
+                li.addEventListener('click', () => selecionarOpcao(index, li));
+                optionsElement.appendChild(li);
+            });
+
+            prevButton.disabled = currentQuestionIndex === 0;
+            nextButton.textContent = currentQuestionIndex === currentQuestions.length - 1 ? 'Finalizar' : 'Próxima';
+        }
+
+        function selecionarOpcao(index, li) {
+            if (respostaConfirmada) return;
+
+            const opcoes = document.querySelectorAll('.option');
+            opcoes.forEach(b => {
+                b.classList.remove('ativo', 'correto', 'errado');
+                const img = b.querySelector('img');
+                img.src = "../../img/square.svg";
+            });
+
+            li.classList.add('ativo');
+            const img = li.querySelector('img');
+            img.src = "../../img/check-square.svg";
+
+            userAnswers[currentQuestionIndex] = index;
+        }
+
+        function nextQuestion() {
+            if (userAnswers[currentQuestionIndex] === null) {
+                alert('Por favor, selecione uma resposta antes de continuar.');
+                return;
+            }
+
+            if (!respostaConfirmada) {
+                const correta = currentQuestions[currentQuestionIndex].correct;
+                const opcoes = document.querySelectorAll('.option');
+                opcoes.forEach((op, i) => {
+                    if (i === correta) {
+                        op.classList.add('correto');
+                    } else if (userAnswers[currentQuestionIndex] === i) {
+                        op.classList.add('errado');
+                    }
+                });
+                respostaConfirmada = true;
+                return;
+            }
+
+            if (currentQuestionIndex < currentQuestions.length - 1) {
+                currentQuestionIndex++;
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion();
+            }
+        }
+
+        function showResults() {
+            score = 0;
+            currentQuestions.forEach((question, index) => {
+                if (userAnswers[index] === question.correct) {
+                    score++;
+                }
+            });
+
+            scoreElement.textContent = `Você acertou ${score} de ${currentQuestions.length}`;
+            if (score >= 21) {
+                scoreElement.classList.add('pass');
+                resultMessageElement.textContent = 'Parabéns! Você foi aprovado na prova de mecânica básica.';
+            } else {
+                scoreElement.classList.add('fail');
+                resultMessageElement.textContent = 'Você não atingiu a pontuação mínima. Estude mais e tente novamente.';
+            }
+
+            questionContainer.classList.add('hidden');
+            resultsElement.classList.remove('hidden');
+        }
+
+        startButton.addEventListener('click', startQuiz);
+        nextButton.addEventListener('click', nextQuestion);
+        prevButton.addEventListener('click', prevQuestion);
+        restartButton.addEventListener('click', startQuiz);
+    </script>
+</body>
+
+</html>

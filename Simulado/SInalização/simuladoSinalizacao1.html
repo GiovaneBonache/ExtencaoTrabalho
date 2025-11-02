@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <link rel="stylesheet" href="../../style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Prova - Sinalização</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .pass {
+            color: green;
+            font-weight: bold;
+        }
+
+        .fail {
+            color: red;
+            font-weight: bold;
+        }
+
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            border: 3px solid #000;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-bottom: 10px;
+            background-color: var(--cor-terciaria);
+        }
+
+        .option img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .option:hover {
+            background-color: #f9f9f9;
+        }
+
+        .option.ativo {
+            background-color: inherit;
+        }
+
+        .option.correto {
+            background-color: #4CAF50 !important;
+            color: white;
+        }
+
+        .option.errado {
+            background-color: #ff1100 !important;
+            color: white;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body class="simuladoCorpo">
+    <div class="mobile-frame">
+        <div class="content">
+            <header class="semcor">
+                <div class="container">
+                    <div> <a href="../../index.html"><img class="seta" src="../../img/chevron-left.svg"></a> </div>
+                </div>
+            </header>
+            <div class="container">
+                <header id="cabecasimulado">
+                    <h1>Simulador de Prova <br> Sinalização </br></h1>
+                </header>
+
+                <div class="intro" id="intro">
+                    <h2>Instruções</h2>
+                    <p>Este simulador apresenta 30 questões de Sinalização, sorteadas aleatoriamente de um banco de
+                        50 perguntas.</p>
+                    <p>Para cada questão, selecione a resposta que você considera correta e clique em "Próxima" para
+                        avançar.</p>
+                    <p>Ao final da prova, você verá sua pontuação final.</p>
+                    <button id="start-btn">Iniciar Prova</button>
+                </div>
+
+                <div class="question-container hidden" id="question-container">
+                    <div class="progress" id="progress">Questão 1 de 30</div>
+                    <div class="question" id="question"></div>
+                    <ul class="options" id="options"></ul>
+                    <div class="navigation">
+                        <button id="prev-btn" disabled>Anterior</button>
+                        <button id="next-btn" class="simuladobnt1">Próxima</button>
+                    </div>
+                </div>
+
+                <div class="results hidden" id="results">
+                    <h2>Resultado Final</h2>
+                    <div class="score" id="score">Você acertou X de 30</div>
+                    <p id="result-message"></p>
+                    <button id="restart-btn">Refazer Prova</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questionBank = [
+            {
+                question: "O que significa a placa de regulamentação R-1?",
+                options: [
+                    "Parada obrigatória",
+                    "Proibido estacionar",
+                    "Velocidade máxima permitida",
+                    "Sentido proibido"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual a cor da placa de advertência?",
+                options: [
+                    "Vermelha e branca",
+                    "Amarela e preta",
+                    "Azul e branca",
+                    "Verde e branca"
+                ],
+                correct: 1
+            },
+            {
+                question: "O que indica uma placa de fundo azul com símbolo branco?",
+                options: [
+                    "Indicação de serviço",
+                    "Regulamentação",
+                    "Advertência",
+                    "Educativa"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que significa a placa A-1?",
+                options: [
+                    "Curva acentuada à direita",
+                    "Cruzamento de vias",
+                    "Intersecção em círculo",
+                    "Animais na pista"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual placa indica 'proibido virar à esquerda'?",
+                options: [
+                    "R-14",
+                    "R-15",
+                    "R-16",
+                    "R-17"
+                ],
+                correct: 1
+            },
+            {
+                question: "O que significa a placa de regulamentação R-6a?",
+                options: [
+                    "Sentido proibido",
+                    "Proibido trânsito de caminhões",
+                    "Proibido trânsito de ônibus",
+                    "Proibido trânsito de motocicletas"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual placa indica 'proibido estacionar'?",
+                options: [
+                    "R-1",
+                    "R-2",
+                    "R-3",
+                    "R-4"
+                ],
+                correct: 3
+            },
+            {
+                question: "O que significa a placa A-11?",
+                options: [
+                    "Pista sinuosa",
+                    "Declive acentuado",
+                    "Aclive acentuado",
+                    "Pista escorregadia"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual a cor da placa de indicação de destino?",
+                options: [
+                    "Verde",
+                    "Azul",
+                    "Marrom",
+                    "Preta"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que indica a placa S-1?",
+                options: [
+                    "Serviços auxiliares",
+                    "Atração turística",
+                    "Identificação de rodovia",
+                    "Limite de velocidade"
+                ],
+                correct: 2
+            },
+            {
+                question: "Qual placa indica 'proibido ultrapassar'?",
+                options: [
+                    "R-8",
+                    "R-9",
+                    "R-10",
+                    "R-11"
+                ],
+                correct: 1
+            },
+            {
+                question: "O que significa a placa A-3?",
+                options: [
+                    "Cruzamento com via lateral",
+                    "Intersecção em T",
+                    "Confluência à esquerda",
+                    "Semáforo à frente"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual placa indica 'proibido retornar'?",
+                options: [
+                    "R-12",
+                    "R-13",
+                    "R-14",
+                    "R-15"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que significa a placa A-5?",
+                options: [
+                    "Ponte móvel",
+                    "Estreitamento de pista",
+                    "Obras na pista",
+                    "Sinalização luminosa"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual a cor da placa de regulamentação?",
+                options: [
+                    "Vermelha",
+                    "Amarela",
+                    "Azul",
+                    "Laranja"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que indica a placa IP-2?",
+                options: [
+                    "Identificação de município",
+                    "Identificação de rodovia federal",
+                    "Identificação de área urbana",
+                    "Identificação de região turística"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual placa indica 'velocidade máxima permitida'?",
+                options: [
+                    "R-17",
+                    "R-18",
+                    "R-19",
+                    "R-20"
+                ],
+                correct: 2
+            },
+            {
+                question: "O que significa a placa A-23?",
+                options: [
+                    "Pedestres",
+                    "Crianças",
+                    "Idosos",
+                    "Deficientes físicos"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual placa indica 'proibido trânsito de pedestres'?",
+                options: [
+                    "R-25",
+                    "R-26",
+                    "R-27",
+                    "R-28"
+                ],
+                correct: 1
+            },
+            {
+                question: "O que significa a placa A-31?",
+                options: [
+                    "Vento lateral",
+                    "Chuva intensa",
+                    "Nevoeiro",
+                    "Granizo"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual a cor da placa de serviços auxiliares?",
+                options: [
+                    "Azul",
+                    "Verde",
+                    "Marrom",
+                    "Preta"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que indica a placa E-1?",
+                options: [
+                    "Parada de ônibus",
+                    "Estacionamento regulamentado",
+                    "Terminal de carga",
+                    "Área de embarque"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual placa indica 'proibido buzinar'?",
+                options: [
+                    "R-29",
+                    "R-30",
+                    "R-31",
+                    "R-32"
+                ],
+                correct: 3
+            },
+            {
+                question: "O que significa a placa A-41?",
+                options: [
+                    "Passagem de trem",
+                    "Passagem de aeronaves",
+                    "Passagem de animais",
+                    "Passagem de ciclistas"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual placa indica 'sentido único'?",
+                options: [
+                    "R-33",
+                    "R-34",
+                    "R-35",
+                    "R-36"
+                ],
+                correct: 2
+            },
+            {
+                question: "O que significa a placa A-45?",
+                options: [
+                    "Ciclistas",
+                    "Motociclistas",
+                    "Caminhoneiros",
+                    "Taxistas"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual a cor da placa de atração turística?",
+                options: [
+                    "Marrom",
+                    "Verde",
+                    "Azul",
+                    "Amarela"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que indica a placa S-4?",
+                options: [
+                    "Posto de combustível",
+                    "Posto policial",
+                    "Telefone público",
+                    "Restaurante"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual placa indica 'proibido trânsito de bicicletas'?",
+                options: [
+                    "R-37",
+                    "R-38",
+                    "R-39",
+                    "R-40"
+                ],
+                correct: 1
+            },
+            {
+                question: "O que significa a placa A-47?",
+                options: [
+                    "Aeroporto",
+                    "Porto",
+                    "Ferry boat",
+                    "Heliporto"
+                ],
+                correct: 2
+            },
+            {
+                question: "Qual placa indica 'estacionamento regulamentado'?",
+                options: [
+                    "E-1",
+                    "E-2",
+                    "E-3",
+                    "E-4"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que significa a placa A-49?",
+                options: [
+                    "Área de desmoronamento",
+                    "Queda de blocos",
+                    "Deslizamento de terra",
+                    "Inundação"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual a cor da placa educativa?",
+                options: [
+                    "Branca e preta",
+                    "Amarela e preta",
+                    "Azul e branca",
+                    "Verde e branca"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que indica a placa S-7?",
+                options: [
+                    "Hotel",
+                    "Camping",
+                    "Área de piquenique",
+                    "Mirante"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual placa indica 'proibido trânsito de veículos de tração animal'?",
+                options: [
+                    "R-41",
+                    "R-42",
+                    "R-43",
+                    "R-44"
+                ],
+                correct: 2
+            },
+            {
+                question: "O que significa a placa A-51?",
+                options: [
+                    "Pista irregular",
+                    "Depressão",
+                    "Lombada",
+                    "Calçada"
+                ],
+                correct: 2
+            }, {
+                question: "Qual placa indica 'proibido parar'?",
+                options: [
+                    "R-2",
+                    "R-3",
+                    "R-4",
+                    "R-5"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que significa a placa A-53?",
+                options: [
+                    "Fim de pista dupla",
+                    "Início de pista dupla",
+                    "Pista dividida",
+                    "Pista compartilhada"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual a cor da placa de indicação de distância?",
+                options: [
+                    "Verde",
+                    "Azul",
+                    "Preta",
+                    "Branca"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que indica a placa S-10?",
+                options: [
+                    "Pronto-socorro",
+                    "Posto de saúde",
+                    "Hospital",
+                    "Farmácia"
+                ],
+                correct: 2
+            },
+            {
+                question: "Qual placa indica 'proibido trânsito de veículos de carga'?",
+                options: [
+                    "R-45",
+                    "R-46",
+                    "R-47",
+                    "R-48"
+                ],
+                correct: 1
+            },
+            {
+                question: "O que significa a placa A-55?",
+                options: [
+                    "Contramão",
+                    "Mão dupla",
+                    "Sentido circular",
+                    "Via expressa"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual placa indica 'proibido estacionar e parar'?",
+                options: [
+                    "R-4",
+                    "R-5",
+                    "R-6",
+                    "R-7"
+                ],
+                correct: 1
+            },
+            {
+                question: "O que significa a placa A-57?",
+                options: [
+                    "Fiscalização eletrônica",
+                    "Radar móvel",
+                    "Controle de velocidade",
+                    "Posto de pesagem"
+                ],
+                correct: 0
+            },
+            {
+                question: "Qual a cor da placa de obras?",
+                options: [
+                    "Laranja",
+                    "Amarela",
+                    "Vermelha",
+                    "Azul"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que indica a placa S-13?",
+                options: [
+                    "Delegacia",
+                    "Polícia rodoviária",
+                    "Bombeiros",
+                    "Defesa civil"
+                ],
+                correct: 1
+            },
+            {
+                question: "Qual placa indica 'proibido trânsito de veículos automotores'?",
+                options: [
+                    "R-49",
+                    "R-50",
+                    "R-51",
+                    "R-52"
+                ],
+                correct: 3
+            },
+            {
+                question: "O que significa a placa A-59?",
+                options: [
+                    "Ciclovia",
+                    "Faixa de pedestres",
+                    "Trânsito compartilhado",
+                    "Área escolar"
+                ],
+                correct: 3
+            },
+            {
+                question: "Qual placa indica 'proibido trânsito de motocicletas'?",
+                options: [
+                    "R-53",
+                    "R-54",
+                    "R-55",
+                    "R-56"
+                ],
+                correct: 0
+            },
+            {
+                question: "O que significa a placa A-61?",
+                options: [
+                    "Fim de todas as proibições",
+                    "Fim da velocidade máxima",
+                    "Fim da proibição de ultrapassar",
+                    "Fim do estacionamento proibido"
+                ],
+                correct: 0
+            }
+        ];
+
+
+        const introElement = document.getElementById('intro');
+        const questionContainer = document.getElementById('question-container');
+        const resultsElement = document.getElementById('results');
+        const startButton = document.getElementById('start-btn');
+        const prevButton = document.getElementById('prev-btn');
+        const nextButton = document.getElementById('next-btn');
+        const restartButton = document.getElementById('restart-btn');
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const progressElement = document.getElementById('progress');
+        const scoreElement = document.getElementById('score');
+        const resultMessageElement = document.getElementById('result-message');
+
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let userAnswers = [];
+        let respostaConfirmada = false;
+
+        function getRandomQuestions() {
+            const shuffled = [...questionBank].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, 30);
+        }
+
+        function startQuiz() {
+            currentQuestions = getRandomQuestions();
+            currentQuestionIndex = 0;
+            score = 0;
+            userAnswers = new Array(currentQuestions.length).fill(null);
+
+            introElement.classList.add('hidden');
+            questionContainer.classList.remove('hidden');
+            resultsElement.classList.add('hidden');
+
+            showQuestion();
+        }
+
+        function showQuestion() {
+            respostaConfirmada = false;
+            const question = currentQuestions[currentQuestionIndex];
+            questionElement.textContent = question.question;
+            progressElement.textContent = `Questão ${currentQuestionIndex + 1} de ${currentQuestions.length}`;
+            optionsElement.innerHTML = '';
+
+            question.options.forEach((option, index) => {
+                const li = document.createElement('li');
+                li.classList.add('option');
+                li.innerHTML = `
+          <img src="../../img/square.svg" alt="quadrado">
+          <span>${option}</span>
+        `;
+
+                li.addEventListener('click', () => selecionarOpcao(index, li));
+                optionsElement.appendChild(li);
+            });
+
+            prevButton.disabled = currentQuestionIndex === 0;
+            nextButton.textContent = currentQuestionIndex === currentQuestions.length - 1 ? 'Finalizar' : 'Próxima';
+        }
+
+        function selecionarOpcao(index, li) {
+            if (respostaConfirmada) return;
+
+            const opcoes = document.querySelectorAll('.option');
+            opcoes.forEach(b => {
+                b.classList.remove('ativo', 'correto', 'errado');
+                const img = b.querySelector('img');
+                img.src = "../../img/square.svg";
+            });
+
+            li.classList.add('ativo');
+            const img = li.querySelector('img');
+            img.src = "../../img/check-square.svg";
+
+            userAnswers[currentQuestionIndex] = index;
+        }
+
+        function nextQuestion() {
+            if (userAnswers[currentQuestionIndex] === null) {
+                alert('Por favor, selecione uma resposta antes de continuar.');
+                return;
+            }
+
+            if (!respostaConfirmada) {
+                const correta = currentQuestions[currentQuestionIndex].correct;
+                const opcoes = document.querySelectorAll('.option');
+                opcoes.forEach((op, i) => {
+                    if (i === correta) {
+                        op.classList.add('correto');
+                    } else if (userAnswers[currentQuestionIndex] === i) {
+                        op.classList.add('errado');
+                    }
+                });
+                respostaConfirmada = true;
+                return;
+            }
+
+            if (currentQuestionIndex < currentQuestions.length - 1) {
+                currentQuestionIndex++;
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion();
+            }
+        }
+
+        function showResults() {
+            score = 0;
+            currentQuestions.forEach((question, index) => {
+                if (userAnswers[index] === question.correct) {
+                    score++;
+                }
+            });
+
+            scoreElement.textContent = `Você acertou ${score} de ${currentQuestions.length}`;
+            if (score >= 21) {
+                scoreElement.classList.add('pass');
+                resultMessageElement.textContent = 'Parabéns! Você foi aprovado na prova de mecânica básica.';
+            } else {
+                scoreElement.classList.add('fail');
+                resultMessageElement.textContent = 'Você não atingiu a pontuação mínima. Estude mais e tente novamente.';
+            }
+
+            questionContainer.classList.add('hidden');
+            resultsElement.classList.remove('hidden');
+        }
+
+        startButton.addEventListener('click', startQuiz);
+        nextButton.addEventListener('click', nextQuestion);
+        prevButton.addEventListener('click', prevQuestion);
+        restartButton.addEventListener('click', startQuiz);
+    </script>
+</body>
+
+</html>
