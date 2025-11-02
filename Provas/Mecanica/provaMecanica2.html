@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <title>Document</title>
+</head>
+
+<body id="tarefas">
+
+  <div class="mobile-frame">
+    <div class="content">
+
+      <header class="semcor">
+        <div class="container">
+          <div> <a href="../../index.html"><img class="seta" src="../../img/chevron-left.svg"></a> </div>
+
+        </div>
+        <div class="texto_questao">
+          <h1> No que se refere <span style="color: red;">à mecanica basica</span>, julgue o item subsequente. </h1>
+          <p class="questaoprova">O motor de um veículo converte energia do combustível em movimento. Para que ele
+            funcione de forma correta, é necessário que a mistura de ar e combustível seja adequada, que a ignição
+            esteja sincronizada e que haja lubrificação. O óleo do motor tem a função de reduzir o atrito entre as peças
+            internas, permitindo seu movimento suave e evitando desgaste prematuro. A falta de manutenção no sistema de
+            lubrificação pode causar superaquecimento e até a quebra completa do motor.<br>
+            <span style="font-size: 20px;"><b> Responda a questâo: </b></span> <br> A falta de óleo ou a utilização de
+            óleo vencido pode causar danos graves ao motor do veículo.
+          </p>
+        </div>
+
+
+        <button id="opcaodefaut1" class="opcao" data-resposta="correta">
+          <img class="iconequadrado" src="../../img/square.svg" alt="quadrado">
+          <h1>Verdadeiro</h1>
+        </button>
+
+        <button id="opcaodefaut2" class="opcao" data-resposta="errada">
+          <img class="iconequadrado" src="../../img/square.svg" alt="quadrado">
+          <h1>Falso</h1>
+
+
+        </button>
+
+
+        <button id="botao3"> Retornar</button>
+        <button id="botao4"> Prosseguir</button>
+
+
+    </div>
+  </div>
+
+
+
+
+
+</html>
+
+<script>
+  const botoes = document.querySelectorAll(".opcao");
+  const enviar = document.getElementById("botao4");
+  const retornar = document.getElementById("botao3");
+
+  let selecionado = null;
+  let respostaConfirmada = false;
+
+  botoes.forEach(botao => {
+    botao.addEventListener("click", () => {
+      botoes.forEach(b => {
+        b.classList.remove("ativo", "correto", "errado");
+        const img = b.querySelector("img");
+        setTimeout(() => {
+          img.src = "../../img/square.svg";
+          img.alt = "quadrado";
+        }, 200);
+      });
+      botao.classList.add("ativo");
+      const img = botao.querySelector("img");
+      setTimeout(() => {
+        img.src = "../../img/check-square.svg";
+        img.alt = "check";
+      }, 200);
+
+      selecionado = botao.dataset.resposta;
+    });
+  });
+
+  enviar.addEventListener("click", () => {
+    if (respostaConfirmada) {
+      window.location.href = "provaMecanica3.html";
+      return;
+    }
+
+    if (!selecionado) {
+      enviar.textContent = "Selecione uma opção!";
+      return;
+    }
+
+    if (selecionado === "correta") {
+      enviar.textContent = "Correto ✔";
+    } else {
+      enviar.textContent = "Errado ✘";
+    }
+
+    botoes.forEach(botao => {
+      if (botao.classList.contains("ativo")) {
+        if (selecionado === "correta") {
+          botao.classList.add("correto");
+        } else {
+          botao.classList.add("errado");
+        }
+      }
+    });
+
+
+  });
+
+  setTimeout(() => {
+    enviar.textContent = "Prosseguir";
+    respostaConfirmada = true;
+    retornar.onclick = () => {
+      window.location.href = "../../MenuProvasMecanica.html";
+    };
+  }, 2000);
+</script>

@@ -693,7 +693,7 @@ body {
 
 #opcaodefaut1 {
   outline: none;
-  top: 32rem;
+  top: 38rem;
   background-color: var(--cor-terciaria);
 }
 
@@ -718,7 +718,7 @@ body {
 
 #opcaodefaut2 {
   outline: none;
-  top: 36rem;
+  top: 42rem;
   background-color: var(--cor-terciaria);
 }
 
@@ -747,7 +747,7 @@ body {
 #botao3 {
   left: 3% !important;
   background-color: var(--cor-primaria);
-  top: 41rem;
+  top: 48rem;
   position: absolute;
   border-radius: 2rem;
   height: 3rem !important;
@@ -763,7 +763,7 @@ body {
 #botao4 {
   left: 58% !important;
   background-color: var(--cor-primaria);
-  top: 41rem;
+  top: 48rem;
   position: absolute;
   border-radius: 2rem;
   height: 3rem !important;
@@ -894,7 +894,7 @@ body {
   background-color: white;
   position: absolute;
   width: 85%;
-  height: 6rem;
+  height: 7rem;
   left: 5%;
   border-radius: 12px;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
