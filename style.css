@@ -13,6 +13,12 @@ body {
 }
 
 @media (min-width: 460px) {
+  .question-container {
+    height: 50% !important;
+
+  }
+
+
   /* simular mobile */
 
   html,
@@ -33,7 +39,7 @@ body {
   .mobile-frame {
     width: 450px;
     height: 100%;
-    background-color: #fff;
+    background-color: var(--cor-terciaria);
     border-radius: 0px;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
@@ -75,6 +81,33 @@ body {
 }
 
 @media (max-width: 10000px) {
+
+  .question-container {
+    height: 54%;
+
+  }
+
+  .simuladoCorpo button {
+    padding: 10px 50px;
+  }
+
+  #cabecasimulado {
+    height: 10rem;
+  }
+
+  .intro {
+    top: 15%;
+  }
+
+  #PainelMaterias h1 {
+    top: 0.4rem;
+    font-size: 23px !important;
+  }
+
+  #PainelMaterias p {
+    font-size: 18px !important;
+  }
+
   #carouselExampleIndicators {
     position: absolute;
     top: 7%;
@@ -132,7 +165,7 @@ body {
   }
 
   .textocard {
-    font-size: 0.55rem !important;
+    font-size: 0.53rem !important;
   }
 
   body p {
@@ -169,6 +202,32 @@ body {
 }
 
 @media (max-width: 390px) {
+
+  .question-container {
+    height: 58%;
+
+  }
+
+  .simuladoCorpo button {
+    padding: 10px 30px;
+  }
+
+  #cabecasimulado {
+    height: 7rem;
+  }
+
+  .intro {
+    top: 15%;
+  }
+
+  #PainelMaterias h1 {
+    font-size: 19px !important;
+  }
+
+  #PainelMaterias p {
+    font-size: 15px !important;
+  }
+
   #carouselExampleIndicators {
     position: absolute;
     top: 7.5%;
@@ -228,7 +287,7 @@ body {
   }
 
   .textocard {
-    font-size: 0.5rem !important;
+    font-size: 0.47rem !important;
   }
 
 
@@ -400,7 +459,7 @@ body {
 }
 
 .botao1 {
-  left: 3%;
+  left: 5%;
 }
 
 .botao2 {
@@ -548,7 +607,7 @@ body {
   left: 6%;
 }
 
-#retanguloseletor.breve {
+#retanguloseletor.simulado {
   top: 70%;
   left: 54%;
 }
@@ -612,6 +671,12 @@ body {
   border: 3px solid #000;
   border-radius: 12px;
 
+}
+
+
+.SimuladoBtn {
+  width: 80% !important;
+  left: 10%;
 }
 
 #opcaoverde {
@@ -691,7 +756,6 @@ body {
   font-family: var(--fonte);
   font-weight: bold;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
-  ;
   border-style: none;
   cursor: pointer;
 }
@@ -765,6 +829,8 @@ body {
   position: absolute;
   top: 32%;
   left: 5%;
+  cursor: pointer;
+  z-index: 10;
 }
 
 .pagina2 .seta {
@@ -772,6 +838,8 @@ body {
   position: absolute;
   top: 27%;
   left: 9%;
+  cursor: pointer;
+  z-index: 10;
 }
 
 .cabeca .seta {
@@ -781,6 +849,8 @@ body {
   width: 2.3rem;
   left: 9%;
   top: 22%;
+  cursor: pointer;
+  z-index: 10;
 }
 
 .semcor .iconeperfil {
@@ -950,3 +1020,90 @@ body {
 }
 
 /* fim foto cachorro */
+/* simulado */
+#cabecasimulado {
+  background-color: var(--cor-primaria);
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+  left: 0px;
+  padding: 0px;
+  top: 0px;
+  position: absolute;
+  width: 100%;
+  height: 9rem;
+}
+
+.intro {
+  position: absolute;
+  padding: 20px;
+  left: 0px;
+}
+
+.simuladoCorpo {
+  line-height: 1.6;
+  background-color: var(--cor-terciaria);
+}
+
+.simuladoCorpo button {
+  background-color: var(--cor-primaria);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+
+}
+
+.question-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  left: 5%;
+  width: 90%;
+  top: 18%;
+}
+
+
+#tarefas button h1 {
+  position: absolute;
+  font-size: 30px;
+  left: 16%;
+  top: 15%;
+}
+
+#tarefas button {
+  outline: none;
+  position: absolute;
+  height: 55px;
+  width: 95%;
+  left: 2%;
+  padding: 10px 20px;
+  border: 3px solid #000;
+  border-radius: 12px;
+
+}
+
+.option {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  outline: none;
+  padding: 10px 20px;
+  border: 3px solid #000;
+  border-radius: 12px;
+}
+
+.question {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+/* fim simulado */
